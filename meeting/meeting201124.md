@@ -12,7 +12,7 @@
 <summary>보기</summary>
 <div markdown="3">
 
-![image-20201124145134712](C:\Users\coolu\AppData\Roaming\Typora\typora-user-images\image-20201124145134712.png)  
+![image-20201124180745348](meeting201124.assets/image-20201124180745348.png)    
 
 </div>
 </details>

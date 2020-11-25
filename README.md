@@ -18,11 +18,11 @@
 
 ### 11월
 
-| 월   | 화   | 수   | 목   | 금   | 토   |
-| ---- | ---- | ---- | ---- | ---- | ---- |
-|      |      | 18   | 19   | 20   | 21   |
-| 23   | 24   | 25   | 26   | 27   | 28   |
-| 30   |      |      |      |      |      |
+| 월                                                           | 화                                                           | 수                                                           | 목                                                           | 금                                                           | 토                                                           |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+|                                                              |                                                              | 18                                                           | [19](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201119.md) | [20](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201120.md) | [21](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201121.md) |
+| [23](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201123.md) | [24](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201124.md) | [25](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201125.md) | 26                                                           | 27                                                           | 28                                                           |
+| 30                                                           |                                                              |                                                              |                                                              |                                                              |                                                              |
 
 
 

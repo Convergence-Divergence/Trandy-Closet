@@ -18,6 +18,8 @@ https://docs.aws.amazon.com/
 
 Get Ready With Me
 
+![img](meeting201123.assets/Untitled.png)
+
 <br>
 
 ### 프로젝트 주제
@@ -116,16 +118,6 @@ Get Ready With Me
 - python or node.js
 - Amazone Web Serivces
 - EC2, S3, Lambda & Api Gateway, DynamoDB, SNS, Cloudwatch
-
-<br>
-
-<br>
-
-<br>
-
-<br>
-
-<br>
 
 <br>
 

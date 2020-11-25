@@ -16,21 +16,15 @@ AWS 계정의 한계가 있다. & 계정이 이번주는 안나온다.
 
 <br>
 
-<img src="meeting201125.assets/image-20201125173332645.png" alt="image-20201125173332645" style="zoom:20%;" />  
-
-<br>
-
 ### UI 프로토타입
 
 <img src="meeting201125.assets/image-20201125165206490.png" alt="image-20201125165206490" style="zoom:67%;" />  
 
 <br>
 
-### 아키텍처
+### 최종 아키텍처
 
-빅데이터 쪽 수정 전
-
-![image-20201125182725460](meeting201125.assets/image-20201125182725460.png)  
+![image-20201125222959758](meeting201125.assets/image-20201125222959758.png)    
 
 <br>
 

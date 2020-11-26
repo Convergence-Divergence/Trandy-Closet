@@ -6,9 +6,7 @@
 
 - [회의록]: 회의록
 
-  
-
-  
+- Github 사용법
 
 
 
@@ -34,4 +32,12 @@
 | 7    | 8    | 9    | 10   | 11   | 12   |
 | 14   | 15   | 16   | 17   | 18   | 19   |
 | 21   | 22   | 23   | 24   |      |      |
+
+
+
+## Github 사용법
+
+1. `$git pull https://github.com/Convergence-Divergence/Trandy-Closet.git`
+2. `$git branch <자신의 브런치이름>`
+3. `$git checkout <자신의 브런치이름>`
 

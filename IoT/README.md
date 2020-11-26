@@ -22,6 +22,10 @@ https://kwanulee.github.io/IoTPlatform/start-aws-iot.html
 
 https://blog.iolate.kr/m/246
 
+**amplify - 안드로이드 가이드**
+
+https://aws.amazon.com/ko/getting-started/hands-on/build-android-app-amplify/
+
 <br>
 
 AWS_IoT_Core_Guide.md 파일 작성

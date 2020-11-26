@@ -18,7 +18,15 @@ http://blog.naver.com/PostView.nhn?blogId=chandong83&logNo=220902795488
 
 https://kwanulee.github.io/IoTPlatform/start-aws-iot.html
 
+**AWS IoT + Raspberry Pi + Python 예제**
+
+https://blog.iolate.kr/m/246
+
+<br>
+
 AWS_IoT_Core_Guide.md 파일 작성
+
+<br>
 
 **콘솔 주소**
 

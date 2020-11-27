@@ -105,3 +105,32 @@ DHT-11 과 DHT-22 중 선정 (정밀값)
 
 코디 정보 제공 사진 겹치기에 대한 방법 (z축 이용 덮어쓰기가 가능한지 & How to 플래그먼트?...)
 
+<br>
+
+<br>
+
+### 11/27
+
+**AWS IoT Core MQTT 실행하기**
+
+-   `cd ~/aws-iot-device-sdk-python-v2/samples`
+
+-   `python pubsub.py --topic iot --root-ca ~/certs/AmazonRootCA1.pem --cert ~/certs/63e9aaa7f0-certificate.pem.crt --key ~/certs/63e9aaa7f0-private.pem.key --endpoint avul980x37035-ats.iot.us-west-2.amazonaws.com`
+
+<br>
+
+**나의 엔드포인트**
+
+-   `avul980x37035-ats.iot.us-west-2.amazonaws.com`
+
+<br>
+
+<br>
+
+**온습도 센서 아두이노에서 동작 확인**
+
+**라즈베리파이에서 동작안됨 ㅠㅠ**
+
+-   `cd Adafruit_Python_DHT/examples/`
+-   `sudo python AdafruitDHT.py 11 4`
+

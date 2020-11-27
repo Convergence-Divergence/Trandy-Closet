@@ -41,3 +41,10 @@
 2. `$git branch <자신의 브런치이름>`
 3. `$git checkout <자신의 브런치이름>`
 
+
+
+4. push 할 때
+
+   `$git push origin <자신의 브런치이름>`
+
+5. githut 사이트에서 pullrequest & merge 

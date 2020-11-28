@@ -38,10 +38,12 @@
 
 **AI - 김은기 멘토님**
 
-1.  kaggle - fashion 관련해서 open cv로 어떤 옷인지 알려주는 것이 잇음
-2.  kaggle - clothing and accessories 가면 참고할 부분이 많음
+1.  kaggle - iMaterialist (Fashion) 2020 at FGVC7
+    - fashion 관련해서 open cv로 어떤 옷인지 알려주는 것이 잇음
+    - clothing and accessories 가면 참고할 부분이 많음
 3.  확실하게 할 수 있는 기능 넣기
     -   AI의 경우 소스코드와 수집한 데이터를 확인해줄 수 있으므로 매니저 통한 연락
+3.  categorical classifier만 정확도 높게 기능해도 꽤나 큰 성과일 것이라고 생각
 
 <br>
 

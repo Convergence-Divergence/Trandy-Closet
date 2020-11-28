@@ -274,3 +274,21 @@ __매니저님 통해서 연락해도 된다!__
 </details>
 
 <br>
+
+
+#### 허진녕 정리 내용 (AI중심)
+
+<details>
+<summary>보기</summary>
+<div markdown="1">
+
+- 어렵지만 kaggle의 'iMaterialist (Fashion) 2020 at FGVC7'를 한번 참조해 볼 것!
+(의류 검출과 식별, 분류 등, 데이터셋(20여GB)도 포함)
+- 소스코드의 구성은 멘토님이 도와줄 수 있음
+-   categorical classifier만 정확도 높게 기능해도 꽤나 큰 성과일 것이라고 생각하심
+
+</div>
+</details>
+
+<br>
+

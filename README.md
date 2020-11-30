@@ -20,7 +20,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 |                                                              |                                                              | 18                                                           | [19](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201119.md) | [20](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201120.md) | [21](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201121.md) |
 | [23](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201123.md) | [24](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201124.md) | [25](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201125.md) | [26](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201126.md) | [27](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201127.md) | [28](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201128.md) |
-| 30                                                           |                                                              |                                                              |                                                              |                                                              |                                                              |
+| [30](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201130.md) |                                                              |                                                              |                                                              |                                                              |                                                              |
 
 
 
@@ -48,3 +48,17 @@
    `$git push origin <자신의 브런치이름>`
 
 5. githut 사이트에서 pullrequest & merge 
+
+<br>
+
+#### Slack (자료공유 및 멘토링 내용 정리용)
+
+https://app.slack.com/client/T01FSESP196/C01EMT1SS5V
+
+#### Notion (실시간 회의용)
+
+https://www.notion.so/58b4990f1dee4197a981f9e61e0e48fb?v=c4faf66f79ba4c0c94acbf1a727a613a
+
+#### Smartsheet (WBS)
+
+https://app.smartsheet.com/sheets/Hwg3QGXVFVvgWvJj8CQWxqqwqWrXfXvGm6Gx3Q31

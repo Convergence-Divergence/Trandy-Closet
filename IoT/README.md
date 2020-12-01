@@ -139,3 +139,50 @@ DHT-11 과 DHT-22 중 선정 (정밀값)
 <br>
 
 ### 11/30
+
+UI 구체화
+
+<br>
+
+<br>
+
+### 12/01
+
+참고1 : https://dev.classmethod.jp/articles/amplify_android_tutorial/
+
+참고2 : https://dev.classmethod.jp/articles/amplify-android-cognito-auth/
+
+<br>
+
+#### Amplify + Android 프로젝트 생성 
+
+Amplify CLI 설치
+
+-   `npm install -g @aws-amplify`
+
+IAM 사용자 추가
+
+-   `amplify configure`
+-   region : `ap-northeast-2`
+
+username : `taelim`
+
+new_user_credentials.csv 다운로드 받아둠
+
+![image-20201201171237731](README.assets/image-20201201171237731.png)  
+
+<br>
+
+#### Amazon Cognito 인증
+
+-   `amplify add auth`
+
+![image-20201201171851159](README.assets/image-20201201171851159.png)  
+
+**상태확인**
+
+-   `amplify status`
+
+프로젝트 갱신
+
+-   `amplify push`

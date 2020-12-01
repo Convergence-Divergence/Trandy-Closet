@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-trandycloset-dev-171219-authRole",
+      "UnauthRoleArn": "arn:aws:iam::873787045845:role/amplify-trandycloset-dev-171219-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::873787045845:role/amplify-trandycloset-dev-171219-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-trandycloset-dev-171219-deployment",
+      "UnauthRoleName": "amplify-trandycloset-dev-171219-unauthRole",
+      "StackName": "amplify-trandycloset-dev-171219",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:873787045845:stack/amplify-trandycloset-dev-171219/f05277a0-33ac-11eb-962d-0af399b062b0",
+      "AmplifyAppId": "d13h1usxkfbc84"
+    },
+    "categories": {
+      "auth": {
+        "trandycloseta13b42f8": {}
+      }
+    }
+  }
+}

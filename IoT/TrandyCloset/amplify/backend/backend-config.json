@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "trandycloseta13b42f8": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

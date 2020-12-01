@@ -8,7 +8,7 @@
 
 <br>
 
-### 11/26
+# 11/26
 
 **단순 DHT-11 & 라즈베리파이 테스트 예제**
 
@@ -109,7 +109,7 @@ DHT-11 과 DHT-22 중 선정 (정밀값)
 
 <br>
 
-### 11/27
+# 11/27
 
 **AWS IoT Core MQTT 실행하기**
 
@@ -138,19 +138,19 @@ DHT-11 과 DHT-22 중 선정 (정밀값)
 
 <br>
 
-### 11/30
+# 11/30
 
 UI 구체화
 
-<br>
+![image-20201201183750716](README.assets/image-20201201183750716.png)  
 
 <br>
 
-### 12/01
+<br>
 
-참고1 : https://dev.classmethod.jp/articles/amplify_android_tutorial/
+# 12/01
 
-참고2 : https://dev.classmethod.jp/articles/amplify-android-cognito-auth/
+참고 : https://dev.classmethod.jp/author/jung-haeun/
 
 <br>
 
@@ -186,3 +186,20 @@ new_user_credentials.csv 다운로드 받아둠
 프로젝트 갱신
 
 -   `amplify push`
+
+<br>
+
+#### 알게 된 사실
+
+AWS Amplify 연관된 서비스
+
+-   AWS AppSync, Amazon API Gateway
+-   Amazon Cognito
+-   Amazon Pinpoint, Amazon Kinesis, Amazon Personalize
+-   Amazon S3, Amazon CloudFront
+
+<br>
+
+-   **AWS AppSync** : GraphQL을 사용하여 애플리케이션에서 필요로 하는 데이터를 가져올 수 있도록 하는 관리형 서비스. 오프라인 상태이더라도 로컬로 데이터 액세스가 가능하도록 하고, 온라인 상태가 되면 데이터를 다시 동기화해줄 수 있는 기능을 갖추고 있습니다.
+-   **Amazon Cognito** : 가입, 로그인, 액세스 제어 기능을 갖춘 인증 관리 서비스. Identity Pool 을 통해 Facebook, Google, Amazon과 같은 소셜 로그인과도 연동이 가능합니다.
+-   **Amazon S3** : 데이터를 저장하고 검색할 수 있는 간단한 API를 제공하는 완전 관리형 스토리지 서비스. IAM 정책이나 S3 버킷 정책으로 지정된 대상에게 공유하도록 할 수 있어요.

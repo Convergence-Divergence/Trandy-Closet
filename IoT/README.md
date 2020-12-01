@@ -134,3 +134,8 @@ DHT-11 과 DHT-22 중 선정 (정밀값)
 -   `cd Adafruit_Python_DHT/examples/`
 -   `sudo python AdafruitDHT.py 11 4`
 
+<br>
+
+<br>
+
+### 11/30

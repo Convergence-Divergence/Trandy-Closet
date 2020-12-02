@@ -48,7 +48,8 @@
 
 최정욱
 
-- 옷장 설계 중
+- 옷장 설계 중  
+  <img src="markdown-images/image-20201202180910355.png" alt="image-20201202180910355" style="zoom:20%;" />  
 - 크기는 박스정도로 예상
 
 <br>

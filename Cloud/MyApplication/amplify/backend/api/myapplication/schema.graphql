@@ -1,0 +1,4 @@
+type Text @model {
+  id: ID!
+  text: String!
+}

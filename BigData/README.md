@@ -1,6 +1,6 @@
 # 빅데이터
 
-
+텍스트크롤링사이트으
 https://www.dailytrend.co.kr/
 
 http://www.wkorea.com/

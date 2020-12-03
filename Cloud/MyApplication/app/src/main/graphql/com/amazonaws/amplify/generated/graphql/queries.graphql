@@ -1,0 +1,24 @@
+# this is an auto generated file. This will be overwritten
+query GetText($id: ID!) {
+  getText(id: $id) {
+    id
+    text
+    createdAt
+    updatedAt
+  }
+}
+query ListTexts(
+  $filter: ModelTextFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTexts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      text
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

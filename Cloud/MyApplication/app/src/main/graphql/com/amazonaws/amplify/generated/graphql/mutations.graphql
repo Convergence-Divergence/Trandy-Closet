@@ -1,0 +1,34 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateText(
+  $input: CreateTextInput!
+  $condition: ModelTextConditionInput
+) {
+  createText(input: $input, condition: $condition) {
+    id
+    text
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateText(
+  $input: UpdateTextInput!
+  $condition: ModelTextConditionInput
+) {
+  updateText(input: $input, condition: $condition) {
+    id
+    text
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteText(
+  $input: DeleteTextInput!
+  $condition: ModelTextConditionInput
+) {
+  deleteText(input: $input, condition: $condition) {
+    id
+    text
+    createdAt
+    updatedAt
+  }
+}

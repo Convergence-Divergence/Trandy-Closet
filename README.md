@@ -26,12 +26,12 @@
 
 ### 12월
 
-| 월   | 화                                                           | 수                                                           | 목   | 금   | 토   |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- | ---- | ---- |
-|      | [1](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201201.md) | [2](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201202.md) | 3    | 4    | 5    |
-| 7    | 8                                                            | 9                                                            | 10   | 11   | 12   |
-| 14   | 15                                                           | 16                                                           | 17   | 18   | 19   |
-| 21   | 22                                                           | 23                                                           | 24   |      |      |
+| 월   | 화                                                           | 수                                                           | 목                                                           | 금   | 토   |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- | ---- |
+|      | [1](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201201.md) | [2](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201202.md) | [3](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201203.md) | 4    | 5    |
+| 7    | 8                                                            | 9                                                            | 10                                                           | 11   | 12   |
+| 14   | 15                                                           | 16                                                           | 17                                                           | 18   | 19   |
+| 21   | 22                                                           | 23                                                           | 24                                                           |      |      |
 
 
 

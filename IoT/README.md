@@ -210,4 +210,127 @@ AWS Amplify 연관된 서비스
 
 # 12/02
 
+**안드로이드앱**
+
 test 폴더 : 달력에 사진 넣기 테스트 중
+
+https://github.com/kizitonwose/CalendarView 라이브러리 5번 예제를 응용할 예정
+
+**필수 코드**
+
+build.gradle (APP)
+
+```kotlin
+implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+implementation 'androidx.core:core-ktx:1.2.0'
+implementation 'androidx.appcompat:appcompat:1.1.0'
+implementation 'com.google.android.material:material:1.1.0'
+implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+testImplementation 'junit:junit:4.+'
+androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
+implementation 'com.github.kizitonwose:CalendarView:1.0.0'
+```
+
+build.gradle (Project)
+
+```kotlin
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.3.72"
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+```
+
+<br>
+
+<br>
+
+# 12/03
+
+**안드로이드앱**
+
+목적 : 자신의 사진 데이터를 AWS에 저장 후 메인화면 달력 부분에서 저장하게 함
+
+test 폴더 : 달력에 인터넷상의 경로를 통한 사진 올리기 접근 완료
+
+#### **필수 코드**
+
+**build.gradle (APP)**
+
+```kotlin
+// Glide 라이브러리
+implementation 'com.github.bumptech.glide:glide:4.9.0'
+annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+implementation "org.jetbrains.anko:anko-commons:0.10.8"
+```
+
+**AndroidManifest.xml**
+
+```xml
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+
+**Fragment.kt**
+
+이미지 불러올 때 형식
+
+```kotlin
+Glide.with(view?.context).load(flights[0]?.imageurl?.toString()).into(flightImage)
+```
+
+data class 재정의 - 이름은 추후 변경 예정 (imageurl 부분 생성 null 허용)
+
+```kotlin
+data class Flight(val time: LocalDateTime, val departure: Airport, val destination: Airport, @ColorRes val color: Int, val imageurl: String?) {
+    data class Airport(val city: String, val code: String)
+}
+```
+
+**Utils.kt**
+
+예제 데이터 add, 사진없으면 null로 접근
+
+```kotlin
+val currentMonth22 = currentMonth.atDay(22)
+    list.add(Flight(currentMonth22.atTime(13, 20), Airport("Ibadan", "IBA"), Airport("Benin", "BNI"), R.color.blue_800,
+        "https://github.com/Convergence-Divergence/Trandy-Closet/raw/master/IoT/README.assets/image-20201126095737081.png"
+    ))
+    list.add(Flight(currentMonth22.atTime(17, 40), Airport("Sokoto", "SKO"), Airport("Ilorin", "ILR"), R.color.red_800, "https://github.com/Convergence-Divergence/Trandy-Closet/raw/master/IoT/README.assets/image-20201126095737081.png"))
+```
+
+<br>
+
+<br>
+
+# 12/04
+
+**안드로이드앱**
+
+목적 : 사진 S3에, 정보 RDS에 저장하여 앱에서 접근하고자함.
+
+RDS에 들어갈 필수요소 (날짜, 상의 이미지 경로, 하의 이미지 경로, 그 외 경로)

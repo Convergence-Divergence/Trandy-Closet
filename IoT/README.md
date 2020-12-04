@@ -334,3 +334,79 @@ val currentMonth22 = currentMonth.atDay(22)
 목적 : 사진 S3에, 정보 RDS에 저장하여 앱에서 접근하고자함.
 
 RDS에 들어갈 필수요소 (날짜, 상의 이미지 경로, 하의 이미지 경로, 그 외 경로)
+
+<br>
+
+**현재시간 출력 필수코드**
+
+```kotlin
+<TextClock
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="yyyy-MM-dd HH:mm:ss"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+```
+
+<br>
+
+**날씨정보 받기**
+
+- openweathermap.org
+
+- API : 메일로 온 Key 참고
+
+- 접근 방법 : `http://api.openweathermap.org/data/2.5/weather?lat=37.476200&lon=126.973154&units=metric&appid=API Key`
+
+- 받은 데이터 형식  
+
+  ```json
+  {
+      "coord": {
+          "lon": 126.97,
+          "lat": 37.48
+      },
+      "weather": [
+          {
+              "id": 800,
+              "main": "Clear",
+              "description": "clear sky",
+              "icon": "01d"
+          }
+      ],
+      "base": "stations",
+      "main": {
+          "temp": 4.59,
+          "feels_like": -0.64,
+          "temp_min": 4,
+          "temp_max": 5,
+          "pressure": 1028,
+          "humidity": 29
+      },
+      "visibility": 10000,
+      "wind": {
+          "speed": 2.92,
+          "deg": 303
+      },
+      "clouds": {
+          "all": 1
+      },
+      "dt": 1607065175,
+          "sys": {
+          "type": 1,
+          "id": 8117,
+          "country": "KR",
+          "sunrise": 1607034654,
+          "sunset": 1607069648
+      },
+      "timezone": 32400,
+      "id": 6800035,
+      "name": "Banpobondong",
+      "cod": 200
+  }
+  ```
+
+참고
+
+https://m.blog.naver.com/PostView.nhn?blogId=ivory82&logNo=220797022612&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+https://yongyi1587.tistory.com/32

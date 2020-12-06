@@ -10,7 +10,7 @@
 https://forms.gle/s5PtSV33KP7HriTD6
 
 
-## 텍스트크롤링사이트으
+## 3. 텍스트크롤링사이트으
 
 https://www.dailytrend.co.kr/
 

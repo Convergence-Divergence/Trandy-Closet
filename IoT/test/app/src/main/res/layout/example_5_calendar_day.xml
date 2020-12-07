@@ -26,12 +26,42 @@
             tools:text="24" />
 
 
-        <ImageView
-            android:id="@+id/flightImage1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_launcher_background" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/flightImage1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <ImageView
+                android:id="@+id/flightImage2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flightImage1"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <ImageView
+                android:id="@+id/flightImage3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintStart_toEndOf="@+id/flightImage1"
+                app:srcCompat="@drawable/ic_launcher_background"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <ImageView
+                android:id="@+id/flightImage4"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintStart_toEndOf="@+id/flightImage2"
+                app:layout_constraintTop_toBottomOf="@+id/flightImage3"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:id="@+id/exFiveDayFlightTop"

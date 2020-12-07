@@ -2,7 +2,34 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<LinearLayout android:layout_width="match_parent"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+            <TextClock
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:format12Hour="yyyy-MM-dd HH:mm:ss"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/tv_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/example_5_page_bg_color"
     android:clickable="true"
@@ -88,4 +115,6 @@
 
 
 </LinearLayout>
+
+    </LinearLayout>
 </layout>

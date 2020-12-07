@@ -300,7 +300,11 @@ implementation "org.jetbrains.anko:anko-commons:0.10.8"
 이미지 불러올 때 형식
 
 ```kotlin
-Glide.with(view?.context).load(flights[0]?.imageurl?.toString()).into(flightImage)
+val Image1 = container.binding.flightImage1
+
+if (flights[0]?.imageurl != null) {
+    Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+}
 ```
 
 data class 재정의 - 이름은 추후 변경 예정 (imageurl 부분 생성 null 허용)
@@ -413,6 +417,8 @@ https://yongyi1587.tistory.com/32
 
 <br>
 
+<br>
+
 # 12/05, 12/06
 
 **멘토링 참고** [보기](https://github.com/Convergence-Divergence/Trandy-Closet/blob/master/meeting/meeting201205.md)
@@ -427,3 +433,11 @@ https://yongyi1587.tistory.com/32
 4.  실제 필요한 시간 단위 수립 (초단위?)
 5.  이미지부분 일단 정사각형 4개로 분리한 후 상,하의 쪽만 인터넷상에서 이미지 불러오게 빼놓고 (원피스 같은 경우 생길 수 있으니 조건에 따라 두 이미지 영역을 하나로 뺄수 있게 작업) 나머지 부분은 사용자가 설정하게 하여 조합 (신발/악세 등)
 6.  월요일에 정욱이와 옷장 Demo 및 H/W 관련 내용 정리 및 바로 만들기 시작
+
+<br>
+
+<br>
+
+# 12/07
+
+**안드로이드앱 메인 화면 가으자**

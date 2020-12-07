@@ -55,4 +55,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
     implementation 'com.github.kizitonwose:CalendarView:1.0.0'
+
+    // Glide 라이브러리
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation "org.jetbrains.anko:anko-commons:0.10.8"
 }

@@ -135,10 +135,12 @@ class Example5Fragment : BaseFragment(R.layout.example_5_fragment), HasToolbar {
                 textView.text = day.date.dayOfMonth.toString()
 
 
-                val Image1 = container.binding.flightImage1
-                val Image2 = container.binding.flightImage2
-                val Image3 = container.binding.flightImage3
-                val Image4 = container.binding.flightImage4
+                val Image1 = container.binding.ivClothImage1
+                val Image2 = container.binding.ivClothImage2
+                val Image3 = container.binding.ivClothImage3
+                val Image4 = container.binding.ivClothImage4
+
+
 
                 val flightTopView = container.binding.exFiveDayFlightTop
                 val flightBottomView = container.binding.exFiveDayFlightBottom
@@ -163,10 +165,6 @@ class Example5Fragment : BaseFragment(R.layout.example_5_fragment), HasToolbar {
 //                                Log.d("접근", "${flightImage1}")
 //                                Log.d("접근", "${view?.context}")
                                 Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
-                                Log.d("접근", "${flights[0]?.imageurl}")
-                                Log.d("접근1", "${flights[1]?.imageurl}")
-                            } else if (flights[1]?.imageurl != null) {
-                                Log.d("접근", "${flights[1]?.imageurl}")
                                 Glide.with(view?.context).load(flights[1]?.imageurl).into(Image2)
                             }
                         }

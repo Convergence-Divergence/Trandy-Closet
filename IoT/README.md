@@ -441,3 +441,19 @@ https://yongyi1587.tistory.com/32
 # 12/07
 
 **안드로이드앱 메인 화면 가으자**
+
+1. 일정 부분을 4영역 (왼쪽 위, 왼쪽 아래, 오른 위, 오른쪽 아래로 나누어 영역 할당)  
+   ![image-20201207154851823](C:\Users\i\AppData\Roaming\Typora\typora-user-images\image-20201207154851823.png)  
+
+   - 차례대로 iv_cloth_image1, iv_cloth_image2, iv_cloth_image3, iv_cloth_image4 이지만
+
+   - binding 거치는 순간 카멜 형식으로 바뀜
+
+   - ```kotlin
+     val Image1 = container.binding.ivClothImage1
+     val Image2 = container.binding.ivClothImage2
+     val Image3 = container.binding.ivClothImage3
+     val Image4 = container.binding.ivClothImage4
+     ```
+
+2. 

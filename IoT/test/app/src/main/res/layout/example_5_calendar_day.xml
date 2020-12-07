@@ -31,35 +31,34 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/flightImage1"
+                android:id="@+id/iv_cloth_image1"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:scaleType="center"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:layout_constraintBottom_toTopOf="@+id/iv_cloth_image2"
+                app:layout_constraintEnd_toStartOf="@+id/iv_cloth_image3" />
 
             <ImageView
-                android:id="@+id/flightImage2"
+                android:id="@+id/iv_cloth_image2"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_cloth_image4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/flightImage1"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_cloth_image1" />
 
             <ImageView
-                android:id="@+id/flightImage3"
+                android:id="@+id/iv_cloth_image3"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                app:layout_constraintStart_toEndOf="@+id/flightImage1"
-                app:srcCompat="@drawable/ic_launcher_background"
-                tools:layout_editor_absoluteY="0dp" />
+                app:layout_constraintBottom_toTopOf="@+id/iv_cloth_image4"
+                app:layout_constraintStart_toEndOf="@+id/iv_cloth_image1" />
 
             <ImageView
-                android:id="@+id/flightImage4"
+                android:id="@+id/iv_cloth_image4"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                app:layout_constraintStart_toEndOf="@+id/flightImage2"
-                app:layout_constraintTop_toBottomOf="@+id/flightImage3"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:layout_constraintStart_toEndOf="@+id/iv_cloth_image2"
+                app:layout_constraintTop_toBottomOf="@+id/iv_cloth_image3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

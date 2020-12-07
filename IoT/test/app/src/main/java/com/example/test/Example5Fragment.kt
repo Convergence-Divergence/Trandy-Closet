@@ -2,9 +2,11 @@ package com.example.test
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
@@ -13,6 +15,7 @@ import androidx.core.view.children
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -25,6 +28,7 @@ import com.example.test.databinding.Example5CalendarDayBinding
 import com.example.test.databinding.Example5CalendarHeaderBinding
 import com.example.test.databinding.Example5EventItemViewBinding
 import com.example.test.databinding.Example5FragmentBinding
+import kotlinx.android.synthetic.main.example_5_calendar_day.*
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.YearMonth
@@ -32,7 +36,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.*
 
-data class Flight(val time: LocalDateTime, val departure: Airport, val destination: Airport, @ColorRes val color: Int) {
+data class Flight(val time: LocalDateTime, val departure: Airport, val destination: Airport, @ColorRes val color: Int, val imageurl: String?) {
     data class Airport(val city: String, val code: String)
 }
 
@@ -130,10 +134,15 @@ class Example5Fragment : BaseFragment(R.layout.example_5_fragment), HasToolbar {
                 val layout = container.binding.exFiveDayLayout
                 textView.text = day.date.dayOfMonth.toString()
 
+
+                val Image1 = container.binding.flightImage1
+
                 val flightTopView = container.binding.exFiveDayFlightTop
                 val flightBottomView = container.binding.exFiveDayFlightBottom
                 flightTopView.background = null
                 flightBottomView.background = null
+
+
 
                 if (day.owner == DayOwner.THIS_MONTH) {
                     textView.setTextColorRes(R.color.example_5_text_grey)
@@ -146,6 +155,12 @@ class Example5Fragment : BaseFragment(R.layout.example_5_fragment), HasToolbar {
                         } else {
                             flightTopView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
                             flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[1].color))
+                            if (flights[0]?.imageurl != null) {
+//                                Log.d("접근", "${flights[0]?.imageurl}")
+//                                Log.d("접근", "${flightImage1}")
+//                                Log.d("접근", "${view?.context}")
+                                Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+                            }
                         }
                     }
                 } else {

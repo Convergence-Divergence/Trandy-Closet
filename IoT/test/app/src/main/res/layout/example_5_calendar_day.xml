@@ -27,12 +27,11 @@
 
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/flightImage1"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_launcher_background"
-            tools:ignore="VectorDrawableCompat" />
+            app:srcCompat="@drawable/ic_launcher_background" />
 
         <View
             android:id="@+id/exFiveDayFlightTop"

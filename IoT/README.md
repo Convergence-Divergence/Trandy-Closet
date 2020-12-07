@@ -363,51 +363,52 @@ RDS에 들어갈 필수요소 (날짜, 상의 이미지 경로, 하의 이미지
 
 - 받은 데이터 형식  
 
-  ```json
-  {
-      "coord": {
-          "lon": 126.97,
-          "lat": 37.48
-      },
-      "weather": [
-          {
-              "id": 800,
-              "main": "Clear",
-              "description": "clear sky",
-              "icon": "01d"
-          }
-      ],
-      "base": "stations",
-      "main": {
-          "temp": 4.59,
-          "feels_like": -0.64,
-          "temp_min": 4,
-          "temp_max": 5,
-          "pressure": 1028,
-          "humidity": 29
-      },
-      "visibility": 10000,
-      "wind": {
-          "speed": 2.92,
-          "deg": 303
-      },
-      "clouds": {
-          "all": 1
-      },
-      "dt": 1607065175,
-          "sys": {
-          "type": 1,
-          "id": 8117,
-          "country": "KR",
-          "sunrise": 1607034654,
-          "sunset": 1607069648
-      },
-      "timezone": 32400,
-      "id": 6800035,
-      "name": "Banpobondong",
-      "cod": 200
-  }
-  ```
+```json
+{
+    "coord": {
+        "lon": 126.97,
+        "lat": 37.48
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "clear sky",
+            "icon": "01d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 4.59,
+        "feels_like": -0.64,
+        "temp_min": 4,
+        "temp_max": 5,
+        "pressure": 1028,
+        "humidity": 29
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 2.92,
+        "deg": 303
+    },
+    "clouds": {
+        "all": 1
+    },
+    "dt": 1607065175,
+        "sys": {
+        "type": 1,
+        "id": 8117,
+        "country": "KR",
+        "sunrise": 1607034654,
+        "sunset": 1607069648
+    },
+    "timezone": 32400,
+    "id": 6800035,
+    "name": "Banpobondong",
+    "cod": 200
+}
+```
+
 
 참고
 
@@ -443,7 +444,7 @@ https://yongyi1587.tistory.com/32
 **안드로이드앱 메인 화면 가으자**
 
 1. 일정 부분을 4영역 (왼쪽 위, 왼쪽 아래, 오른 위, 오른쪽 아래로 나누어 영역 할당)  
-   ![image-20201207154851823](C:\Users\i\AppData\Roaming\Typora\typora-user-images\image-20201207154851823.png)  
+   ![image-20201207154851823](README.assets\image-20201207154851823.png)  
 
    - 차례대로 iv_cloth_image1, iv_cloth_image2, iv_cloth_image3, iv_cloth_image4 이지만
 
@@ -456,4 +457,823 @@ https://yongyi1587.tistory.com/32
      val Image4 = container.binding.ivClothImage4
      ```
 
-2. 
+2. 날씨
+
+   - 새로운 예제
+     - https://affineur.tistory.com/62
+   - 깡샘의 안드로이드 프로그래밍 도전과제 9번 수행
+     - https://github.com/kkangseongyun/kkangs_android
+
+
+
+한 짓 결과는 실패
+
+<details>
+<summary>접기/펼치기 버튼</summary>
+<div markdown="1">
+
+### 변경
+
+Example5Fragment.kt
+
+```kotlin
+package com.example.test
+
+import android.os.Build
+import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.ColorRes
+import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.children
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
+import com.kizitonwose.calendarview.model.CalendarDay
+import com.kizitonwose.calendarview.model.CalendarMonth
+import com.kizitonwose.calendarview.model.DayOwner
+import com.kizitonwose.calendarview.ui.DayBinder
+import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
+import com.kizitonwose.calendarview.ui.ViewContainer
+import com.kizitonwose.calendarview.utils.next
+import com.kizitonwose.calendarview.utils.previous
+import com.example.test.databinding.Example5CalendarDayBinding
+import com.example.test.databinding.Example5CalendarHeaderBinding
+import com.example.test.databinding.Example5EventItemViewBinding
+import com.example.test.databinding.Example5FragmentBinding
+import kotlinx.android.synthetic.main.example_5_calendar_day.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.*
+
+data class Flight(val time: LocalDateTime, val departure: Airport, val destination: Airport, @ColorRes val color: Int, val imageurl: String?) {
+    data class Airport(val city: String, val code: String)
+}
+
+class Example5FlightsAdapter : RecyclerView.Adapter<Example5FlightsAdapter.Example5FlightsViewHolder>() {
+
+    val flights = mutableListOf<Flight>()
+
+    private val formatter = DateTimeFormatter.ofPattern("EEE'\n'dd MMM'\n'HH:mm")
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Example5FlightsViewHolder {
+        return Example5FlightsViewHolder(
+            Example5EventItemViewBinding.inflate(parent.context.layoutInflater, parent, false)
+        )
+    }
+
+    override fun onBindViewHolder(viewHolder: Example5FlightsViewHolder, position: Int) {
+        viewHolder.bind(flights[position])
+    }
+
+    override fun getItemCount(): Int = flights.size
+
+    inner class Example5FlightsViewHolder(val binding: Example5EventItemViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(flight: Flight) {
+            binding.itemFlightDateText.apply {
+                text = formatter.format(flight.time)
+                setBackgroundColor(itemView.context.getColorCompat(flight.color))
+            }
+
+            binding.itemDepartureAirportCodeText.text = flight.departure.code
+            binding.itemDepartureAirportCityText.text = flight.departure.city
+
+            binding.itemDestinationAirportCodeText.text = flight.destination.code
+            binding.itemDestinationAirportCityText.text = flight.destination.city
+        }
+    }
+}
+
+class Example5Fragment : BaseFragment(R.layout.example_5_fragment), HasToolbar {
+
+    override val toolbar: Toolbar?
+        get() = null
+
+    override val titleRes: Int = R.string.example_5_title
+
+    private var selectedDate: LocalDate? = null
+    private val monthTitleFormatter = DateTimeFormatter.ofPattern("MMMM")
+
+    private val flightsAdapter = Example5FlightsAdapter()
+    private val flights = generateFlights().groupBy { it.time.toLocalDate() }
+
+    private lateinit var binding: Example5FragmentBinding
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = Example5FragmentBinding.bind(view)
+
+        binding.exFiveRv.apply {
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            adapter = flightsAdapter
+            addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
+        }
+        flightsAdapter.notifyDataSetChanged()
+
+        val daysOfWeek = daysOfWeekFromLocale()
+
+        val currentMonth = YearMonth.now()
+        binding.exFiveCalendar.setup(currentMonth.minusMonths(10), currentMonth.plusMonths(10), daysOfWeek.first())
+        binding.exFiveCalendar.scrollToMonth(currentMonth)
+
+        class DayViewContainer(view: View) : ViewContainer(view) {
+            lateinit var day: CalendarDay // Will be set when this container is bound.
+            val binding = Example5CalendarDayBinding.bind(view)
+            init {
+                view.setOnClickListener {
+                    if (day.owner == DayOwner.THIS_MONTH) {
+                        if (selectedDate != day.date) {
+                            val oldDate = selectedDate
+                            selectedDate = day.date
+                            val binding = this@Example5Fragment.binding
+                            binding.exFiveCalendar.notifyDateChanged(day.date)
+                            oldDate?.let { binding.exFiveCalendar.notifyDateChanged(it) }
+                            updateAdapterForDate(day.date)
+                        }
+                    }
+                }
+            }
+        }
+        binding.exFiveCalendar.dayBinder = object : DayBinder<DayViewContainer> {
+            override fun create(view: View) = DayViewContainer(view)
+            override fun bind(container: DayViewContainer, day: CalendarDay) {
+                container.day = day
+                val textView = container.binding.exFiveDayText
+                val layout = container.binding.exFiveDayLayout
+                textView.text = day.date.dayOfMonth.toString()
+
+
+                val Image1 = container.binding.ivClothImage1
+                val Image2 = container.binding.ivClothImage2
+                val Image3 = container.binding.ivClothImage3
+                val Image4 = container.binding.ivClothImage4
+
+
+
+                val flightTopView = container.binding.exFiveDayFlightTop
+                val flightBottomView = container.binding.exFiveDayFlightBottom
+                flightTopView.background = null
+                flightBottomView.background = null
+
+
+
+                if (day.owner == DayOwner.THIS_MONTH) {
+                    textView.setTextColorRes(R.color.example_5_text_grey)
+                    layout.setBackgroundResource(if (selectedDate == day.date) R.drawable.example_5_selected_bg else 0)
+
+                    val flights = flights[day.date]
+                    if (flights != null) {
+                        if (flights.count() == 1) {
+                            flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
+                        } else {
+                            flightTopView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
+                            flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[1].color))
+                            if (flights[0]?.imageurl != null) {
+//                                Log.d("접근", "${flights[0]?.imageurl}")
+//                                Log.d("접근", "${flightImage1}")
+//                                Log.d("접근", "${view?.context}")
+                                Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+                                Glide.with(view?.context).load(flights[1]?.imageurl).into(Image2)
+                            }
+                        }
+                    }
+                } else {
+                    textView.setTextColorRes(R.color.example_5_text_grey_light)
+                    layout.background = null
+                }
+            }
+        }
+
+        class MonthViewContainer(view: View) : ViewContainer(view) {
+            val legendLayout = Example5CalendarHeaderBinding.bind(view).legendLayout.root
+        }
+        binding.exFiveCalendar.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
+            override fun create(view: View) = MonthViewContainer(view)
+            override fun bind(container: MonthViewContainer, month: CalendarMonth) {
+                // Setup each header day text if we have not done that already.
+                if (container.legendLayout.tag == null) {
+                    container.legendLayout.tag = month.yearMonth
+//                    container.legendLayout.children.map { it as TextView }.forEachIndexed { index, tv ->
+//                        tv.text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
+//                            .toUpperCase(Locale.ENGLISH)
+//                        tv.setTextColorRes(R.color.example_5_text_grey)
+//                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f)
+//                    }
+                    month.yearMonth
+                }
+            }
+        }
+
+        binding.exFiveCalendar.monthScrollListener = { month ->
+            val title = "${monthTitleFormatter.format(month.yearMonth)} ${month.yearMonth.year}"
+            binding.exFiveMonthYearText.text = title
+
+            selectedDate?.let {
+                // Clear selection if we scroll to a new month.
+                selectedDate = null
+                binding.exFiveCalendar.notifyDateChanged(it)
+                updateAdapterForDate(null)
+            }
+        }
+
+        binding.exFiveNextMonthImage.setOnClickListener {
+            binding.exFiveCalendar.findFirstVisibleMonth()?.let {
+                binding.exFiveCalendar.smoothScrollToMonth(it.yearMonth.next)
+            }
+        }
+
+        binding.exFivePreviousMonthImage.setOnClickListener {
+            binding.exFiveCalendar.findFirstVisibleMonth()?.let {
+                binding.exFiveCalendar.smoothScrollToMonth(it.yearMonth.previous)
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onStart() {
+        super.onStart()
+        requireActivity().window.statusBarColor = requireContext().getColorCompat(R.color.example_5_toolbar_color)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onStop() {
+        super.onStop()
+        requireActivity().window.statusBarColor = requireContext().getColorCompat(R.color.colorPrimaryDark)
+    }
+
+    private fun updateAdapterForDate(date: LocalDate?) {
+        flightsAdapter.flights.clear()
+        flightsAdapter.flights.addAll(flights[date].orEmpty())
+        flightsAdapter.notifyDataSetChanged()
+    }
+}
+
+```
+
+<br>
+
+HomeActivity
+
+```kotlin
+package com.example.test
+
+import android.graphics.Bitmap
+import android.os.Bundle
+import android.view.MenuItem
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.ImageLoader
+import com.android.volley.toolbox.ImageRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.test.databinding.HomeActivityBinding
+import kotlinx.android.synthetic.main.example_5_fragment.*
+import org.xml.sax.InputSource
+import org.w3c.dom.Document
+import org.w3c.dom.Element
+import java.io.StringReader
+import java.text.SimpleDateFormat
+import javax.xml.parsers.DocumentBuilderFactory
+
+class HomeActivity : AppCompatActivity() {
+
+
+    // 날씨 부분 변수 선언
+    val symbolView by lazy { mission1_symbol }
+    val temperatureView by lazy { mission1_temperature }
+    val upView by lazy { mission1_up_text }
+    val downView by lazy { mission1_down_text }
+    val recyclerView by lazy { mission1_recycler }
+    val queue by lazy { Volley.newRequestQueue(this) }
+
+    val list = mutableListOf<WeatherData>()
+    val adapter_weather = MyAdapter(list)
+    var stringToDate = SimpleDateFormat("yyyy-mm-dd")
+    // 날씨 부분 변수 선언 끝
+
+    internal lateinit var binding: HomeActivityBinding
+
+    private val examplesAdapter = HomeOptionsAdapter {
+        val fragment = it.createView()
+        supportFragmentManager.beginTransaction()
+            .run {
+                if (fragment is Example5Fragment) {
+                    return@run setCustomAnimations(
+                        R.anim.slide_in_up,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.slide_out_down
+                    )
+                }
+                return@run setCustomAnimations(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left,
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_right
+                )
+            }
+            .add(R.id.homeContainer, fragment, fragment.javaClass.simpleName)
+            .addToBackStack(fragment.javaClass.simpleName)
+            .commit()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = HomeActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.homeToolbar)
+        binding.examplesRv.apply {
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            adapter = examplesAdapter
+            addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+        }
+
+        // 날씨 부분 시작
+        recyclerView.let {
+            val layoutManager = LinearLayoutManager(this)
+//            layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            it.layoutManager = layoutManager
+            it.addItemDecoration(MyItemDecoration())
+            it.adapter = adapter_weather
+        }
+
+        val currentRequest = StringRequest(
+            Request.Method.POST,
+            "http://api.openweathermap.org/data/2.5/weather?q=seoul&mode=xml&units=metric&appid=4e2d0b710b962dd6098c49dc317096f3",
+            Response.Listener { response -> parseXMLCurrent(response) }, Response.ErrorListener {})
+
+        val forecastRequest = StringRequest(Request.Method.POST,
+            "https://api.openweathermap.org/data/2.5/forecast?q=seoul&mode=xml&units=metric&appid=4e2d0b710b962dd6098c49dc317096f3",
+            Response.Listener { response -> parseXMLForecast(response) }, Response.ErrorListener {})
+
+        queue.add(currentRequest)
+        queue.add(forecastRequest)
+        // 날씨 부분 끝
+    }
+
+    // 날씨 부분 시작
+    fun parseXMLCurrent(response: String) {
+        try {
+            val factory = DocumentBuilderFactory.newInstance()
+            val builder = factory.newDocumentBuilder()
+            val doc = builder.parse(InputSource(StringReader(response)))
+            doc.documentElement.normalize()
+
+            val tempElement = doc.getElementsByTagName("temperature").item(0) as Element
+            val temperature = tempElement.getAttribute("value")
+
+            temperatureView.text = temperature
+            upView.text = tempElement.getAttribute("max")
+            downView.text = tempElement.getAttribute("min")
+
+            val weatherElement = doc.getElementsByTagName("weather").item(0) as Element
+            val symbol = weatherElement.getAttribute("icon")
+
+            val imageLoader = ImageLoader(queue, object: ImageLoader.ImageCache {
+                override fun getBitmap(url: String?): Bitmap? {
+                    return null
+                }
+
+                public override fun putBitmap(url: String?, bitmap: Bitmap?) {
+                }
+            })
+
+            val uriString = "http://openweathermap.org/img/w/$symbol.png"
+            symbolView.setImageUrl(uriString, imageLoader)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun parseXMLForecast(response: String) {
+        try {
+            val factory = DocumentBuilderFactory.newInstance()
+            val builder = factory.newDocumentBuilder()
+            val doc: Document = builder.parse(InputSource(StringReader(response)))
+            doc.documentElement.normalize()
+
+            val nodeList = doc.getElementsByTagName("time")
+
+            val minTempList = mutableListOf<Float>()
+            val maxTempList = mutableListOf<Float>()
+
+            var newDate: Long? = 0
+            var oldDate: Long? = null
+
+            for (i in 0 until nodeList.length) {
+                val weatherData = WeatherData("", "", "", null)
+
+                val timeNode = nodeList.item(i) as Element
+                val tempNode = timeNode.getElementsByTagName("temperature").item(0) as Element
+
+                weatherData.day = timeNode.getAttribute("from").substring(0..9)
+                weatherData.max = tempNode.getAttribute("max")
+                weatherData.min = tempNode.getAttribute("min")
+
+                newDate = stringToDate.parse(weatherData.day).time.toLong()
+
+                if (oldDate == null) {
+                    oldDate = newDate
+                }
+
+                if (newDate == oldDate) {
+                    maxTempList.add(weatherData.max.toFloat())
+                    minTempList.add(weatherData.min.toFloat())
+                }
+                else {
+                    weatherData.day = weatherData.day.substring(5..9)
+                    weatherData.max = maxTempList.max().toString()
+                    weatherData.min = minTempList.min().toString()
+
+                    val symbolNode = timeNode.getElementsByTagName("symbol").item(0) as Element
+                    val symbol = symbolNode.getAttribute("var")
+
+                    val url = "http://openweathermap.org/img/w/$symbol.png"
+
+                    val imageRequest = ImageRequest(url, Response.Listener {
+                        weatherData.img = it
+                        adapter_weather.notifyDataSetChanged()
+                    }, 0, 0, ImageView.ScaleType.CENTER_CROP, null, Response.ErrorListener {})
+                    queue.add(imageRequest)
+                    list.add(weatherData)
+
+                    oldDate = newDate
+
+                    maxTempList.clear()
+                    minTempList.clear()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+    // 날씨 부분 끝
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> onBackPressed().let { true }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+}
+
+```
+
+<br>
+
+example_5_fragment.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextClock
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="yyyy-MM-dd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/white" />
+
+                <TextClock
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="HH:mm:ss"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+<!--            날씨 시작-->
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@drawable/bg">
+
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/mission1_symbol"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="32dp" />
+
+                <ImageView
+                    android:id="@+id/mission1_up_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mission1_symbol"
+                    android:layout_alignLeft="@id/mission1_symbol"
+                    android:src="@drawable/ic_up" />
+
+                <TextView
+                    android:id="@+id/mission1_up_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/mission1_up_image"
+                    android:layout_toRightOf="@id/mission1_up_image"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:id="@+id/mission1_down_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/mission1_up_image"
+                    android:layout_marginLeft="32dp"
+                    android:layout_toRightOf="@id/mission1_up_text"
+                    android:src="@drawable/ic_down" />
+
+                <TextView
+                    android:id="@+id/mission1_down_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/mission1_up_image"
+                    android:layout_toRightOf="@id/mission1_down_image"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/mission1_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mission1_up_image"
+                    android:layout_marginLeft="24dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="80dp" />
+
+                <ImageView
+                    android:id="@+id/mission1_fahrenheit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/mission1_temperature"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/mission1_temperature"
+                    android:src="@drawable/ic_fahrenheit" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mission1_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mission1_temperature" />
+
+            </RelativeLayout>
+            <!--            날씨 끝-->
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/example_5_page_bg_color"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".Example5Fragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/exFiveAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/example_5_toolbar_color"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <ImageView
+                android:id="@+id/exFivePreviousMonthImage"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="22dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/example_5_text_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_chevron_left" />
+
+            <TextView
+                android:id="@+id/exFiveMonthYearText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/example_5_text_grey"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/exFiveNextMonthImage"
+                app:layout_constraintStart_toEndOf="@id/exFivePreviousMonthImage"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="April 2018" />
+
+            <ImageView
+                android:id="@+id/exFiveNextMonthImage"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/example_5_text_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_chevron_right" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.kizitonwose.calendarview.CalendarView
+            android:id="@+id/exFiveCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cv_dayViewResource="@layout/example_5_calendar_day"
+            app:cv_monthHeaderResource="@layout/example_5_calendar_header"
+            app:cv_orientation="horizontal"
+            app:cv_outDateStyle="endOfGrid"
+            app:cv_scrollMode="paged" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/exFiveRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+    </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
+```
+
+
+
+<br>
+
+#### 생성
+
+MyAdapter
+
+```kotlin
+package com.example.test
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+
+class MyAdapter(val dataList: MutableList<WeatherData>) : RecyclerView.Adapter<MyViewHolder>() {
+
+
+    override fun getItemCount(): Int = dataList.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.mission1_item, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val weatherData = dataList[position]
+
+        holder?.let {
+            it.dayView.text = weatherData.day
+            it.maxView.text = weatherData.max
+            it.minView.text = weatherData.min
+            it.imgView.setImageBitmap(weatherData.img)
+        }
+    }
+}
+```
+
+
+
+<br>
+
+MyItemDecoration
+
+```kotlin
+package com.example.test
+
+import android.graphics.Rect
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+
+// 각 날씨 리싸이클러 뷰에 데코
+
+class MyItemDecoration : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        super.getItemOffsets(outRect, view, parent, state)
+
+        outRect?.set(10, 10, 10, 10)
+        view?.setBackgroundColor(-0x776d6f70)
+    }
+}
+
+// 데코레이션 적용하면 각 날씨에 데코가 생김
+```
+
+
+
+<br>
+
+MyViewHolder
+
+```kotlin
+package com.example.test
+
+// 날씨용 뷰 홀더
+
+import android.graphics.Bitmap
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+
+class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    val dayView = v.findViewById<TextView>(R.id.mission1_item_day)
+    val minView = v.findViewById<TextView>(R.id.mission1_item_min)
+    val maxView = v.findViewById<TextView>(R.id.mission1_item_max)
+    val imgView = v.findViewById<ImageView>(R.id.mission1_item_image)
+}
+
+
+```
+
+
+
+<br>
+
+WeatherData
+
+```kotlin
+package com.example.test
+
+import android.graphics.Bitmap
+
+data class WeatherData(var max: String, var min: String, var day: String, var img: Bitmap?)
+```
+
+
+
+<br>
+
+처참히 실패!!!
+
+
+</div>
+</details>

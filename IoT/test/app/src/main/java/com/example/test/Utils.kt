@@ -20,7 +20,9 @@ fun generateFlights(): List<Flight> {
     list.add(Flight(currentMonth22.atTime(13, 20), Airport("Ibadan", "IBA"), Airport("Benin", "BNI"), R.color.blue_800,
         "https://github.com/Convergence-Divergence/Trandy-Closet/raw/master/IoT/README.assets/image-20201126095737081.png"
     ))
-    list.add(Flight(currentMonth22.atTime(17, 40), Airport("Sokoto", "SKO"), Airport("Ilorin", "ILR"), R.color.red_800, "https://github.com/Convergence-Divergence/Trandy-Closet/raw/master/IoT/README.assets/image-20201126095737081.png"))
+    list.add(Flight(currentMonth22.atTime(17, 40), Airport("Sokoto", "SKO"), Airport("Ilorin", "ILR"), R.color.red_800,
+        "https://github.com/Convergence-Divergence/Trandy-Closet/raw/master/IoT/README.assets/image-20201201183750716.png"
+    ))
 
     list.add(
         Flight(

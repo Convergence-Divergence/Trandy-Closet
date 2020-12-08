@@ -444,7 +444,7 @@ https://yongyi1587.tistory.com/32
 **안드로이드앱 메인 화면 가으자**
 
 1. 일정 부분을 4영역 (왼쪽 위, 왼쪽 아래, 오른 위, 오른쪽 아래로 나누어 영역 할당)  
-   ![image-20201207154851823](README.assets\image-20201207154851823.png)  
+   ![image-20201207154851823](README.assets/image-20201207154851823.png)  
 
    - 차례대로 iv_cloth_image1, iv_cloth_image2, iv_cloth_image3, iv_cloth_image4 이지만
 
@@ -1285,7 +1285,7 @@ data class WeatherData(var max: String, var min: String, var day: String, var im
 
 **안드로이드앱 메인 화면 가은다.**
 
-![image-20201208173056753](C:\Users\i\Desktop\Trandy-Closet\IoT\README.assets\image-20201208173056753.png)  
+![image-20201208173056753](README.assets/image-20201208173056753.png)  
 
 **수행**
 

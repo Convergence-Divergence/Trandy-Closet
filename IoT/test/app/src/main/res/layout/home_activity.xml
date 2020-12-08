@@ -35,6 +35,16 @@
                 android:layout_height="70dp"
                 android:layout_gravity="center_vertical"
                 android:background="#DD8686" />
+
+            <TextView
+                android:id="@+id/tv_weather"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="날씨 정보 올 곳"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/white" />
+
         </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

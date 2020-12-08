@@ -1274,6 +1274,34 @@ data class WeatherData(var max: String, var min: String, var day: String, var im
 
 처참히 실패!!!
 
-
 </div>
 </details>
+
+<br>
+
+<br>
+
+# 12/08
+
+**안드로이드앱 메인 화면 가은다.**
+
+![image-20201208173056753](C:\Users\i\Desktop\Trandy-Closet\IoT\README.assets\image-20201208173056753.png)  
+
+**수행**
+
+1. 날씨 정보는 불러왔고 달력 부분만 밀기 기능 수행
+2. S3 이미지만 가져오면 날짜별로 4칸 이용 이미지 넣기 가능
+
+**할것**
+
+1. 일정 눌렀을 때 해당 부분 확대 기능
+2. 시간 어디까지 할지 논의
+3. 카메라 연동
+4. 날씨부분 아이콘 포함 조금 멋있게
+5. 다른쪽 유아이 가자
+
+왜 배경 검정색? 추후 하프 미러 대비
+
+<br>
+
+<br>

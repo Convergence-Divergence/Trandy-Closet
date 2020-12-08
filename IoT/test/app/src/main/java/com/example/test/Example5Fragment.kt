@@ -2,20 +2,14 @@ package com.example.test
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.children
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
@@ -30,12 +24,10 @@ import com.example.test.databinding.Example5CalendarHeaderBinding
 import com.example.test.databinding.Example5EventItemViewBinding
 import com.example.test.databinding.Example5FragmentBinding
 import kotlinx.android.synthetic.main.example_5_calendar_day.*
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
 import java.util.*
 
 data class Flight(val time: LocalDateTime, val departure: Airport, val destination: Airport, @ColorRes val color: Int, val imageurl: String?) {

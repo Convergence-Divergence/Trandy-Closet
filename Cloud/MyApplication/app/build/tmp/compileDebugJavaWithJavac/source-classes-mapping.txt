@@ -1,0 +1,8 @@
+com/example/myapplication/BuildConfig.java
+ com.example.myapplication.BuildConfig
+com/example/myapplication/MainActivity.java
+ com.example.myapplication.MainActivity
+com/example/myapplication/AuthActivity.java
+ com.example.myapplication.AuthActivity
+ com.example.myapplication.AuthActivity$1
+ com.example.myapplication.AuthActivity$2

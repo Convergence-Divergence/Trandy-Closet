@@ -1,0 +1,56 @@
+{
+    "UserAgent": "aws-amplify-cli/2.0",
+    "Version": "1.0",
+    "auth": {
+        "plugins": {
+            "awsCognitoAuthPlugin": {
+                "UserAgent": "aws-amplify-cli/0.1.0",
+                "Version": "0.1.0",
+                "IdentityManager": {
+                    "Default": {}
+                },
+                "CredentialsProvider": {
+                    "CognitoIdentity": {
+                        "Default": {
+                            "PoolId": "us-east-1:1280ad27-0d1c-460f-b3aa-24e519212013",
+                            "Region": "us-east-1"
+                        }
+                    }
+                },
+                "CognitoUserPool": {
+                    "Default": {
+                        "PoolId": "us-east-1_bCN8m1pl8",
+                        "AppClientId": "2j8gqu3bkcjcpqkir7a4irmkc5",
+                        "AppClientSecret": "1rqof17s30qd0ivuo1475cedtgki5gon1u63keiq9b6uojh5dgom",
+                        "Region": "us-east-1"
+                    }
+                },
+                "Auth": {
+                    "Default": {
+                        "authenticationFlowType": "USER_SRP_AUTH"
+                    }
+                },
+                "AppSync": {
+                    "Default": {
+                        "ApiUrl": "https://gxv6kbzexjdszg5sslhzjflxcu.appsync-api.us-east-1.amazonaws.com/graphql",
+                        "Region": "us-east-1",
+                        "AuthMode": "AMAZON_COGNITO_USER_POOLS",
+                        "ClientDatabasePrefix": "myapplication_AMAZON_COGNITO_USER_POOLS"
+                    }
+                }
+            }
+        }
+    },
+    "api": {
+        "plugins": {
+            "awsAPIPlugin": {
+                "myapplication": {
+                    "endpointType": "GraphQL",
+                    "endpoint": "https://gxv6kbzexjdszg5sslhzjflxcu.appsync-api.us-east-1.amazonaws.com/graphql",
+                    "region": "us-east-1",
+                    "authorizationType": "AMAZON_COGNITO_USER_POOLS"
+                }
+            }
+        }
+    }
+}

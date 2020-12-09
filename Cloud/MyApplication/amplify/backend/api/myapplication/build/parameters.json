@@ -1,0 +1,14 @@
+{
+    "CreateAPIKey": 0,
+    "AppSyncApiName": "myapplication",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authmyapplicationb2126229",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-myapplication-dev-135326-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/e998650956ccb8ab630083319c193e32c81607fe"
+}

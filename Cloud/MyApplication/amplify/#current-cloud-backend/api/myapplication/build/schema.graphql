@@ -1,0 +1,148 @@
+type Text {
+  id: ID!
+  text: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelTextConnection {
+  items: [Text]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelTextFilterInput {
+  id: ModelIDInput
+  text: ModelStringInput
+  and: [ModelTextFilterInput]
+  or: [ModelTextFilterInput]
+  not: ModelTextFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getText(id: ID!): Text
+  listTexts(filter: ModelTextFilterInput, limit: Int, nextToken: String): ModelTextConnection
+}
+
+input CreateTextInput {
+  id: ID
+  text: String!
+}
+
+input UpdateTextInput {
+  id: ID!
+  text: String
+}
+
+input DeleteTextInput {
+  id: ID
+}
+
+type Mutation {
+  createText(input: CreateTextInput!, condition: ModelTextConditionInput): Text
+  updateText(input: UpdateTextInput!, condition: ModelTextConditionInput): Text
+  deleteText(input: DeleteTextInput!, condition: ModelTextConditionInput): Text
+}
+
+input ModelTextConditionInput {
+  text: ModelStringInput
+  and: [ModelTextConditionInput]
+  or: [ModelTextConditionInput]
+  not: ModelTextConditionInput
+}
+
+type Subscription {
+  onCreateText: Text @aws_subscribe(mutations: ["createText"])
+  onUpdateText: Text @aws_subscribe(mutations: ["updateText"])
+  onDeleteText: Text @aws_subscribe(mutations: ["deleteText"])
+}

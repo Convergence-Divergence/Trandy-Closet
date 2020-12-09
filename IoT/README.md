@@ -1305,3 +1305,30 @@ data class WeatherData(var max: String, var min: String, var day: String, var im
 <br>
 
 <br>
+
+# 12/08
+
+**한 것** : 옷 추천 액티비티 제작 (다만 S3 연동이 안되어 일단 로컬 사진으로 대체함)
+
+**만든 class 및 activity, layout**
+
+MyclothActivity.kt
+
+activity_mycloth.xml
+
+fragment_photo.xml
+
+PhotoFragment.kt
+
+PhotoPagerAdapter.kt
+
+PermissionChecker.kt
+
+MediaImage.kt
+
+![image-20201209180700413](README.assets/image-20201209180700413.png)  
+
+![image-20201209180712095](README.assets/image-20201209180712095.png)  
+
+슬라이드 형태
+

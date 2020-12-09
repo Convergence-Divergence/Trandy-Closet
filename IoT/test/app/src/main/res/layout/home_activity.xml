@@ -29,6 +29,32 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/bt_my"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:text="내 옷장" />
+
+                <Button
+                    android:id="@+id/bt_pop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="유행도 평가" />
+
+                <Button
+                    android:id="@+id/bt_recom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="코디 추천" />
+
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/examplesRv"
                 android:layout_width="70dp"

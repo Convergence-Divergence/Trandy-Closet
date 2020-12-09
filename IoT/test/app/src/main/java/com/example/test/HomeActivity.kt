@@ -1,5 +1,7 @@
 package com.example.test
 
+import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -10,13 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.databinding.HomeActivityBinding
 import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.home_activity.*
+import org.jetbrains.anko.longToast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class HomeActivity : AppCompatActivity() {
-
 
 
 
@@ -52,6 +55,11 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.homeToolbar)
 
+        bt_recom.setOnClickListener {
+            val i = Intent(this, MyclothActivity::class.java)
+            startActivity(i)
+        }
+
         binding.examplesRv.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = examplesAdapter
@@ -59,8 +67,9 @@ class HomeActivity : AppCompatActivity() {
         }
 
         getCurrentWeather()
-    }
 
+
+    }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -1332,3 +1332,34 @@ MediaImage.kt
 
 슬라이드 형태
 
+<br>
+
+<br>
+
+# 12/09
+
+**한 것** : UI 다듬는 과정 + 옷 수정 기능
+
+![image-20201211100743809](README.assets/image-20201211100743809.png)  
+
+<br>
+
+<br>
+
+# 12/10
+
+**한 것** : 날씨부분 아이콘 추가 및 정리, AI 모델 안드로이드에서 돌리기, 발표 자료 만들기
+
+**AI 모델 돌리는 예제** (이제야 코드 넣는걸 이해함 하...)
+
+https://codelabs.developers.google.com/codelabs/recognize-flowers-with-tensorflow-on-android/#0
+
+<br>
+
+![image-20201211193908628](README.assets/image-20201211193908628.png)  
+
+![image-20201211193927042](README.assets/image-20201211193927042.png)  
+
+![image-20201211193932659](README.assets/image-20201211193932659.png)  
+
+  ![image-20201211193938928](README.assets/image-20201211193938928.png)  

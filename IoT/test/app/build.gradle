@@ -41,6 +41,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    // 탠서플로우
+    aaptOptions {
+        noCompress "tflite"
+    }
+
 }
 
 dependencies {
@@ -65,4 +71,9 @@ dependencies {
     // 날씨용
     compile 'com.squareup.retrofit2:retrofit:2.4.0'
     compile 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    // 탠서플로우
+    implementation 'org.tensorflow:tensorflow-lite:+'
+//    implementation 'com.aslam:tflite-image:+'
+
 }

@@ -1,0 +1,13 @@
+{
+  "projectName": "S3TransferImages1209",
+  "version": "3.0",
+  "frontend": "android",
+  "android": {
+    "config": {
+      "ResDir": "/res"
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
+}

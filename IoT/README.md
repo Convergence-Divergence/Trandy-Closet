@@ -1396,8 +1396,27 @@ C:\Users\coolu\.gradle\wrapper\dist 경로의 모든 Gradle 삭제 후 다시 �
 
 # 12/13
 
-**한 것** : 
+**한 것** : 앱 합치는 중...
 
 **주요이슈**: 앱 실행시 블루스크린... 원인 모름
 
 <img src="README.assets/image-20201213140712314.png" alt="image-20201213140712314" style="zoom:10%;" />  
+
+**추가 오류** : `Failed to open zip file.
+Gradle's dependency cache may be corrupt (this sometimes occurs after a network connection timeout.)`
+
+**해결** : 어제와 같이 Gradle 문제로 판명
+
+C:\Users\coolu\.gradle\wrapper\dist 경로의 모든 Gradle 삭제 후 다시 시작 됐다가 안됐다가
+
+**내일 할일** : RDS 보는 방법, 생성 여부, 규칙 약속, 시나리오 구성, 센서 확인, S3와 RDS간  어떻게 구성되는지 확인
+
+**필요한거** : Observe Data in real-time
+
+https://docs.amplify.aws/lib/datastore/real-time/q/platform/android
+
+앱 새로 구성 중
+
+<br>
+
+<br>

@@ -1346,7 +1346,7 @@ MediaImage.kt
 
 <br>
 
-# 12/10
+# 12/11
 
 **한 것** : 날씨부분 아이콘 추가 및 정리, AI 모델 안드로이드에서 돌리기, 발표 자료 만들기
 
@@ -1363,3 +1363,41 @@ https://codelabs.developers.google.com/codelabs/recognize-flowers-with-tensorflo
 ![image-20201211193932659](README.assets/image-20201211193932659.png)  
 
   ![image-20201211193938928](README.assets/image-20201211193938928.png)  
+
+<br>
+
+<br>
+
+# 12/12
+
+**한 것** : S3TransferUtilitySample(업로딩 및 다운로딩) + test(기본 작업 앱)
+
+**주요이슈** : java + kotlin 혼용에 대한 이슈 문제로 kotlin 앱을 기준으로 java 소스 넣기 작업
+
+안되누 안되누... 계속 작업중 가은다 (월요일에 RDS 규칙을 약속 꼭해야할듯)
+
+두 앱간 Gradle 문제가 자주 생긴다.
+
+C:\Users\coolu\.gradle\wrapper\dist 경로의 모든 Gradle 삭제 후 다시 시작
+
+<br>
+
+**S3 APP vs  쪽 기존 작업 APP 파일 정보**
+
+![image-20201213140500258](README.assets/image-20201213140500258.png)  ![image-20201213140607703](README.assets/image-20201213140607703.png)  
+
+<br>
+
+**결론** : git을 통해선 gradle 다운로드 정보가 공유되지 않아 충돌 발생가능, SDK 조절 필수 전반적으로 기능 다 확인 후에 push 해두는게 좋겠다.
+
+<br>
+
+<br>
+
+# 12/13
+
+**한 것** : 
+
+**주요이슈**: 앱 실행시 블루스크린... 원인 모름
+
+<img src="README.assets/image-20201213140712314.png" alt="image-20201213140712314" style="zoom:10%;" />  

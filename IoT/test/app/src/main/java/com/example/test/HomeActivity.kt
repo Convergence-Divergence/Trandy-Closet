@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.test.databinding.HomeActivityBinding
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fragment_photo.*
 import kotlinx.android.synthetic.main.home_activity.*
 import org.jetbrains.anko.longToast

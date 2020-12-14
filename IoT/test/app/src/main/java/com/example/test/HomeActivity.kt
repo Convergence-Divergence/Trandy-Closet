@@ -23,9 +23,8 @@ import com.example.test.databinding.HomeActivityBinding
 import kotlinx.android.synthetic.main.fragment_photo.*
 import kotlinx.android.synthetic.main.home_activity.*
 import org.jetbrains.anko.longToast
+import com.google.gson.JsonObject
 import org.json.JSONObject
-//import org.json.JSONObject
-//import retrofit2.converter.gson
 import org.tensorflow.lite.Interpreter
 import retrofit2.Call
 import retrofit2.Callback
@@ -87,29 +86,9 @@ class HomeActivity : AppCompatActivity() {
 
         // 탠서플로우 써보까
         bt_test.setOnClickListener {
-
-            // input : 텐서플로 모델의 placeholder에 전달할 데이터(3)
-            // output: 텐서플로 모델로부터 결과를 넘겨받을 배열. 덮어쓰기 때문에 초기값은 의미없다.
-            var input = floatArrayOf(0F)
-//            val output = intArrayOf(0) // 15 = 3 * 5, out = x * 5
-            val output = floatArrayOf(0F) // 15 = 3 * 5, out = x * 5
-
-
-
-
-            // 1번 모델을 해석할 인터프리터 생성
-            val tflite = getTfliteInterpreter("converted_model.tflite")
-            // 모델 구동.
-            // 정확하게는 from_session 함수의 output_tensors 매개변수에 전달된 연산 호출
-            tflite?.run(input, output)
-            // 출력을 배열에 저장하기 때문에 0번째 요소를 가져와서 문자열로 변환
-            tv_test.setText((output[0]).toString())
+            val i = Intent(this, ClassifierActivity::class.java)
+            startActivity(i)
         }
-        // 탠서 끝
-
-
-
-
 
     }
 

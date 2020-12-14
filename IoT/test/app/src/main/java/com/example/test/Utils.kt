@@ -32,5 +32,7 @@ fun generateFlights(): List<Flight> {
     list.add(Flight(nextMonth13.atTime(10, 50), Airport("상의", "다른 정보"), Airport("하의", "다른 정보"), R.color.green_700, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj9DUKxUNMCDLOfQBJ7I966Sxyz5Igvt4JTw&usqp=CAU"))
     list.add(Flight(currentMonth.minusMonths(1).atDay(9).atTime(20, 15), Airport("상의", "다른 정보"), Airport("하의", "다른 정보"), R.color.orange_800, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrQXzIxSKQbyVI3ffqCQuYxJ4tg_85K8vgaeDGpcLLUTIZ_Ddu5ItLEjQ85juWnxWRTQQqEC5H&usqp=CAc")
     )
+
+    Log.d("이건 어떻게 뜰까", "${list}")
     return list
 }

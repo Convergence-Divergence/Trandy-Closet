@@ -90,6 +90,12 @@ class HomeActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        // 내 옷장서 일정 추가해보자
+        bt_my.setOnClickListener {
+            val i = Intent(this, CrudActivity::class.java)
+            startActivity(i)
+        }
+
     }
 
 

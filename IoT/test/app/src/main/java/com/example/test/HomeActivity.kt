@@ -1,23 +1,38 @@
 package com.example.test
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.test.databinding.HomeActivityBinding
-import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.fragment_photo.*
 import kotlinx.android.synthetic.main.home_activity.*
 import org.jetbrains.anko.longToast
+import com.google.gson.JsonObject
 import org.json.JSONObject
+import org.tensorflow.lite.Interpreter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.FileInputStream
+import java.io.IOException
+import java.nio.MappedByteBuffer
+import java.nio.channels.FileChannel
 
 class HomeActivity : AppCompatActivity() {
 
@@ -49,6 +64,7 @@ class HomeActivity : AppCompatActivity() {
             .commit()
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = HomeActivityBinding.inflate(layoutInflater)
@@ -68,8 +84,17 @@ class HomeActivity : AppCompatActivity() {
 
         getCurrentWeather()
 
+        // 탠서플로우 써보까
+        bt_test.setOnClickListener {
+            val i = Intent(this, ClassifierActivity::class.java)
+            startActivity(i)
+        }
 
     }
+
+
+
+
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -107,6 +132,8 @@ class HomeActivity : AppCompatActivity() {
                     var main: String = ""
                     var description: String = ""
 
+                    var iconUrl: String = ""
+
 
                     iconName = jsonObj.getJSONArray("weather").getJSONObject(0).getString("icon")
                     nowTemp = jsonObj.getJSONObject("main").getString("temp")
@@ -119,9 +146,30 @@ class HomeActivity : AppCompatActivity() {
                         jsonObj.getJSONArray("weather").getJSONObject(0).getString("description")
 
                     description = transferWeather(description).toString()
+
+                    iconUrl = "https://openweathermap.org/img/w/" + iconName + ".png"
+                    Log.d("성공", "아이콘 유알엘 $iconUrl")
+                    Glide.with(this@HomeActivity).load(iconUrl).into(iv_icon)
+
                     var msg: String =
-                        description + " 습도 " + humidity + "%, 풍속 " + speed + "m/s" + " 온도 현재:" + nowTemp + " / 최저:" + minTemp + " / 최고:" + maxTemp;
+                        description + " 습도 " + humidity + "%, 풍속 " + speed + "m/s" + " 온도 현재:" + nowTemp + " / 최저:" + minTemp + " / 최고:" + maxTemp
                     Log.d("성공", "Success :: $msg")
+
+                    var text_wt = findViewById<TextView>(R.id.tv_wt)
+                    var text_nowtemp = findViewById<TextView>(R.id.tv_nowtemp)
+                    var text_hightemp = findViewById<TextView>(R.id.tv_hightemp)
+                    var text_lowtemp = findViewById<TextView>(R.id.tv_lowtemp)
+                    var text_hu = findViewById<TextView>(R.id.tv_hu)
+                    var text_win = findViewById<TextView>(R.id.tv_win)
+
+                    text_wt.text = "현재 날씨 " + description
+                    text_nowtemp.text = "현재 기온 " + nowTemp + "ºC"
+                    text_hightemp.text = "최고 기온 " + maxTemp + "ºC"
+                    text_lowtemp.text = "최저 기온 " + minTemp + "ºC"
+                    text_hu.text = "습도 " + humidity + "%"
+                    text_win.text = "풍속 " + speed + "m/s"
+
+
 
                     var text_all_weather = findViewById<TextView>(R.id.tv_weather)
                     text_all_weather.text = msg
@@ -151,6 +199,30 @@ class HomeActivity : AppCompatActivity() {
         } else if (weather == "clear sky") {
             return "맑음"
         }
-        return ""
+        return weather
+    }
+
+    // 모델 파일 인터프리터를 생성하는 공통 함수
+    // loadModelFile 함수에 예외가 포함되어 있기 때문에 반드시 try, catch 블록이 필요하다.
+    private fun getTfliteInterpreter(modelPath:String): Interpreter? {
+        try
+        {
+            return Interpreter(loadModelFile(this@HomeActivity, modelPath))
+        }
+        catch (e:Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+    // 모델을 읽어오는 함수로, 텐서플로 라이트 홈페이지에 있다.
+    // MappedByteBuffer 바이트 버퍼를 Interpreter 객체에 전달하면 모델 해석을 할 수 있다.
+    @Throws(IOException::class)
+    private fun loadModelFile(activity: Activity, modelPath:String): MappedByteBuffer {
+        val fileDescriptor = activity.getAssets().openFd(modelPath)
+        val inputStream = FileInputStream(fileDescriptor.getFileDescriptor())
+        val fileChannel = inputStream.getChannel()
+        val startOffset = fileDescriptor.getStartOffset()
+        val declaredLength = fileDescriptor.getDeclaredLength()
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
     }
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/voiceInterface"
+        layout="@layout/voice_component"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_above="@+id/space_interactive_voice_component"
+        android:layout_centerHorizontal="true" />
+
+    <Space
+        android:id="@+id/space_interactive_voice_component"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_inter_group_separation"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="Transcript:"
+            android:id="@+id/transcriptLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:textAlignment="textEnd"
+            android:textColor="@color/grey_300"
+            android:textStyle="bold" />
+
+        <TextView
+            android:text="Transcript Placeholder"
+            android:id="@+id/transcriptTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:textColor="@color/text_color_1"/>
+
+        <TextView
+            android:text="Response as text:"
+            android:id="@+id/responseLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:textColor="@color/grey_300"
+            android:textStyle="bold" />
+
+        <TextView
+            android:text="Response Placeholder"
+            android:id="@+id/responseTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_1"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

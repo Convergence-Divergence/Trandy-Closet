@@ -24,6 +24,8 @@ import kotlinx.android.synthetic.main.fragment_photo.*
 import kotlinx.android.synthetic.main.home_activity.*
 import org.jetbrains.anko.longToast
 import org.json.JSONObject
+//import org.json.JSONObject
+//import retrofit2.converter.gson
 import org.tensorflow.lite.Interpreter
 import retrofit2.Call
 import retrofit2.Callback

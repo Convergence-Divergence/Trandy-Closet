@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/example_5_toolbar_color"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.ImageClassification">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -6,13 +6,18 @@ plugins {
 
 apply plugin: 'kotlin-kapt'
 
+project.ext.ASSET_DIR = projectDir.toString() + '/src/main/assets'
+
+assert file(project.ext.ASSET_DIR + "/model.tflite").exists()
+assert file(project.ext.ASSET_DIR + "/labels.txt").exists()
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.example.test"
-        minSdkVersion 20
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -22,8 +27,9 @@ android {
         multiDexEnabled true
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures{
+        dataBinding = true
+        viewBinding = true
     }
 
     buildTypes {
@@ -45,6 +51,9 @@ android {
     // 탠서플로우
     aaptOptions {
         noCompress "tflite"
+    }
+    lintOptions {
+        abortOnError false
     }
 
 }
@@ -75,5 +84,17 @@ dependencies {
     // 탠서플로우
     implementation 'org.tensorflow:tensorflow-lite:+'
 //    implementation 'com.aslam:tflite-image:+'
+
+    // tflite 합치기
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+
+    // Build off of nightly TensorFlow Lite
+    // TODO: Add TFLite dependencies
+    implementation('org.tensorflow:tensorflow-lite:0.0.0-nightly') { changing = true }
+    implementation('org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly') { changing = true }
+    implementation('org.tensorflow:tensorflow-lite-support:0.0.0-nightly') { changing = true }
 
 }

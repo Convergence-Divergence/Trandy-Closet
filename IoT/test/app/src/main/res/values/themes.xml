@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="AppTheme.ImageClassification.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.ImageClassification.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.ImageClassification.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

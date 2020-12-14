@@ -1420,3 +1420,17 @@ https://docs.amplify.aws/lib/datastore/real-time/q/platform/android
 <br>
 
 <br>
+
+# 12/14
+
+**한 것** : AI 모델 앱과 기존 앱  합침, 내 옷장 CRUD 작업 중
+
+github commit 내용 : [201214 APP (AI+myAPP)](https://github.com/Convergence-Divergence/Trandy-Closet/commit/cb53c3f74ca584f9b640fbd6e2c862d6d2bdf2ec)
+
+`YearMonth.now();` 데이터 형식 -> 2017-03
+
+현재 일자에 들어가는 사진은 년 월 일이 mutableList에 들어감
+
+CRUD 구현을 위해선 초기화 이후 `.add`, `.clear`, `.remove`, `.set` 등 키워드 이용 가능
+
+다만, 이미지 URL 부분을 RDS, S3와 연결해야하는데 그거시 문제로다

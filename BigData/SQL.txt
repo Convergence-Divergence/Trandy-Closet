@@ -1,0 +1,31 @@
+show tables;
+DROP tables Users;
+DROP tables Cloths;
+DROP tables Cloth_dairy;
+
+CREATE TABLE Users ( 
+    user_id VARCHAR(30) NOT NULL, 
+    name VARCHAR(30) NOT NULL, 
+    sex ENUM('M','F'),
+    PRIMARY KEY (name)
+);
+
+CREATE TABLE Cloths (  
+    name VARCHAR(30) NOT NULL, 
+    image_number INT(30),
+    category VARCHAR(30),
+    detail VARCHAR(30),
+    color VARCHAR(30),
+    season VARCHAR(30),
+    Url VARCHAR(30),
+    PRIMARY KEY (name),
+    FOREIGN KEY (name) REFERENCES Users (name)
+);
+
+CREATE TABLE Cloth_dairy (  
+    name VARCHAR(30) NOT NULL, 
+    cloth_set INT(30) NOT NULL,
+    date datetime,
+    title VARCHAR(30),
+    FOREIGN KEY(name) REFERENCES Users(name)
+);

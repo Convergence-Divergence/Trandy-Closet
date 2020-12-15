@@ -56,8 +56,8 @@ android:layout_width="match_parent"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center_vertical|end"
-            app:tint="@color/example_5_text_grey"
-            app:srcCompat="@drawable/ic_airplane_takeoff" />
+            app:srcCompat="@drawable/clothes_shirt_sport_trickot_tshirt_icon_123938"
+            app:tint="@color/example_5_text_grey" />
     </FrameLayout>
 
     <LinearLayout
@@ -105,8 +105,8 @@ android:layout_width="match_parent"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center_vertical|end"
-            app:tint="@color/example_5_text_grey"
-            app:srcCompat="@drawable/ic_airplane_landing" />
+            app:srcCompat="@drawable/clothes_shirt_sport_trickot_tshirt_icon_123938"
+            app:tint="@color/example_5_text_grey" />
     </FrameLayout>
 
     <LinearLayout

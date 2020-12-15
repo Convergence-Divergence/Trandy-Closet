@@ -6,7 +6,14 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47e32ecf-0645-4939-8719-b18a7a0b61ed" name="Default Changelist" comment="" />
+    <list default="true" id="47e32ecf-0645-4939-8719-b18a7a0b61ed" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../IoT/test/app/src/main/res/drawable/clothes_shirt_sport_trickot_tshirt_icon_123938.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IoT/TrandyCloset/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../IoT/TrandyCloset/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IoT/TrandyCloset/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../IoT/TrandyCloset/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IoT/test/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../IoT/test/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IoT/test/app/src/main/java/com/example/test/Example5Fragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../IoT/test/app/src/main/java/com/example/test/Example5Fragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../IoT/test/app/src/main/res/layout/example_5_event_item_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../IoT/test/app/src/main/res/layout/example_5_event_item_view.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +22,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_2_API_30-test]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[s6lite2_API_30]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -28,10 +35,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="ProjectId" id="1l4zFKqpJKDzVO4nlY6AYo2OAfv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

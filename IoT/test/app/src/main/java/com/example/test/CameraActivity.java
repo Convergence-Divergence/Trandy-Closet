@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Trace;
+import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.view.View;
@@ -526,6 +527,7 @@ public abstract class CameraActivity extends AppCompatActivity
         if (recognition.getConfidence() != null)
           recognitionValueTextView.setText(
               String.format("%.2f", (100 * recognition.getConfidence())) + "%");
+              Log.d("이거 값이 머지", String.valueOf(recognition.getTitle()));
       }
 
       Recognition recognition1 = results.get(1);

@@ -1434,3 +1434,17 @@ github commit 내용 : [201214 APP (AI+myAPP)](https://github.com/Convergence-Di
 CRUD 구현을 위해선 초기화 이후 `.add`, `.clear`, `.remove`, `.set` 등 키워드 이용 가능
 
 다만, 이미지 URL 부분을 RDS, S3와 연결해야하는데 그거시 문제로다
+
+<img src="README.assets/image-20201214183815162.png" alt="image-20201214183815162" style="zoom:25%;" />  
+
+<br>
+
+<br>
+
+# 12/15
+
+방식의 변화가 많이 생김
+
+**한 것** : 
+
+https://black-jin0427.tistory.com/84

@@ -17,9 +17,11 @@
 package com.example.test;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -58,7 +60,13 @@ import com.example.test.env.Logger;
 import com.example.test.tflite.Classifier.Device;
 import com.example.test.tflite.Classifier.Recognition;
 
+import org.tensorflow.lite.Interpreter;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.List;
 
 public abstract class CameraActivity extends AppCompatActivity
@@ -636,4 +644,6 @@ public abstract class CameraActivity extends AppCompatActivity
   public void onNothingSelected(AdapterView<?> parent) {
     // Do nothing.
   }
+
+
 }

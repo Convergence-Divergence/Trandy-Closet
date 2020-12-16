@@ -1,0 +1,12 @@
+red
+green
+blue
+light_blue
+brown
+pink
+navy
+yellow
+orange
+white
+gray
+black 

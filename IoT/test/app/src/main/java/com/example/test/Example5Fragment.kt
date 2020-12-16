@@ -184,7 +184,7 @@ class Example5Fragment : BaseFragment(R.layout.example_5_fragment), HasToolbar {
                 // Setup each header day text if we have not done that already.
                 if (container.legendLayout.tag == null) {
                     container.legendLayout.tag = month.yearMonth
-//                    container.legendLayout.map { it as TextView }.forEachIndexed { index, tv ->
+//                    container.legendLayout.children.map { it as TextView }.forEachIndexed { index, tv ->
 //                        tv.text = daysOfWeek[index].getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
 //                            .toUpperCase(Locale.ENGLISH)
 //                        tv.setTextColorRes(R.color.example_5_text_grey)

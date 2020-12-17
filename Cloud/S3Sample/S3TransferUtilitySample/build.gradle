@@ -25,6 +25,7 @@ dependencies {
     def aws_version = "2.16.+"
     implementation "com.amazonaws:aws-android-sdk-s3:$aws_version"
     implementation ("com.amazonaws:aws-android-sdk-mobile-client:$aws_version") { transitive = true }
+    implementation 'com.amplifyframework:aws-api:1.6.4'
     // END AWS DEPENDENCIES
 
 

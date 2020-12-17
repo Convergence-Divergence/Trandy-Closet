@@ -1,0 +1,15 @@
+'cardigan',
+'coat',
+'dress',
+'hat',
+'jacket',
+'jumpsuit',
+'pants',
+'shirt,blouse',
+'shoe',
+'shorts',
+'skirt',
+'tights,stockings',
+'top,t-shirt,sweatshirt'
+
+

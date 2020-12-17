@@ -1,0 +1,72 @@
+{
+    "paths": [
+        {
+            "name": "/todo",
+            "lambdaFunction": "lambdarestfulapi",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/todo"
+        },
+        {
+            "name": "/Users",
+            "lambdaFunction": "Users",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/Cloths",
+            "lambdaFunction": "Cloths",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "RESTfulapi",
+    "apiName": "RESTfulapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "lambdarestfulapi"
+        },
+        {
+            "lambdaFunction": "Users"
+        },
+        {
+            "lambdaFunction": "Cloths"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-s3transferimages1209-dev-133644-authRole",
+        "unAuthRoleName": "amplify-s3transferimages1209-dev-133644-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "lambdarestfulapi",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "Users",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "Cloths",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "a6783f6c"
+}

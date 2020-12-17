@@ -19,6 +19,13 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import org.tensorflow.lite.Interpreter;
+import org.tensorflow.lite.support.common.TensorOperator;
+import org.tensorflow.lite.support.image.ImageProcessor;
+import org.tensorflow.lite.support.image.TensorImage;
+import org.tensorflow.lite.support.image.ops.ResizeOp;
+import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
+import org.tensorflow.lite.support.image.ops.Rot90Op;
+import org.tensorflow.lite.support.common.ops.NormalizeOp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -31,7 +38,10 @@ import java.nio.channels.FileChannel;
 
 import kotlin.jvm.internal.Intrinsics;
 
+
+
 public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callback {
+
 
     private final String TAG = "MyTag";
 
@@ -42,10 +52,22 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
     private Camera mCamera;
     private Camera.CameraInfo mCameraInfo;
 
-    private int mDisplayOrientation;
+    private TensorImage inputImageBuffer;
 
-    public MyCameraPreview(Context context, int cameraId) {
+    /** Image size along the x axis. */
+    private final int imageSizeX = 0;
+    /** Image size along the y axis. */
+    private final int imageSizeY = 0;
+
+    private final float PROBABILITY_MEAN = 0.0f;
+    private final float PROBABILITY_STD = 1.0f;
+
+    private int mDisplayOrientation;
+    private Activity context;
+
+    public MyCameraPreview(Activity context, int cameraId) {
         super(context);
+        this.context = context;
         Log.d(TAG, "MyCameraPreview cameraId : " + cameraId);
 
         // 0    ->     CAMERA_FACING_BACK
@@ -258,11 +280,13 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
 
             float[][] output = (float[][])var15;
 
-            // 1번 모델을 해석할 인터프리터 생성
+            // 색모델 모델을 해석할 인터프리터 생성
 
             // 모델 구동.
             // 정확하게는 from_session 함수의 output_tensors 매개변수에 전달된 연산 호출
-            Interpreter tflite = CrudActivity.getTfliteInterpreter("color.tflite");
+
+
+            Interpreter tflite = getTfliteInterpreter("color.tflite");
 
             if (tflite == null) {
                 Intrinsics.throwNpe();
@@ -270,7 +294,12 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
 
             tflite.run(input, output);
 
-            Log.d("해석",output.toString());
+            Log.d("해석", String.valueOf(output));
+            for(a=0; a<12; ++a) {
+                Log.d("해석", String.valueOf(a + output[0][a]));
+            }
+
+
 
 
             // 색 텐서 모델 사용 끝!!!!!
@@ -365,29 +394,44 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
     }
 
 
-//
-//    private Interpreter getTfliteInterpreter(String modelPath) {
-//        try {
-//            return new Interpreter(loadModelFile(CrudActivity.this, modelPath));
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-//
-//    // 모델을 읽어오는 함수로, 텐서플로 라이트 홈페이지에 있다.
-//    // MappedByteBuffer 바이트 버퍼를 Interpreter 객체에 전달하면 모델 해석을 할 수 있다.
-//    private MappedByteBuffer loadModelFile(Activity activity, String modelPath) throws IOException {
-//        AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(modelPath);
-//        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
-//        FileChannel fileChannel = inputStream.getChannel();
-//        long startOffset = fileDescriptor.getStartOffset();
-//        long declaredLength = fileDescriptor.getDeclaredLength();
-//        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
-//    }
+    private Interpreter getTfliteInterpreter(String modelPath) {
+        try {
+            return new Interpreter(loadModelFile(context, modelPath));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
+    // 모델을 읽어오는 함수로, 텐서플로 라이트 홈페이지에 있다.
+    // MappedByteBuffer 바이트 버퍼를 Interpreter 객체에 전달하면 모델 해석을 할 수 있다.
+    private MappedByteBuffer loadModelFile(Activity activity, String modelPath) throws IOException {
+        AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(modelPath);
+        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+        FileChannel fileChannel = inputStream.getChannel();
+        long startOffset = fileDescriptor.getStartOffset();
+        long declaredLength = fileDescriptor.getDeclaredLength();
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+    }
 
+    private TensorImage loadImage(final Bitmap bitmap, int sensorOrientation) {
+        // Loads bitmap into a TensorImage.
+        inputImageBuffer.load(bitmap);
+
+        // Creates processor for the TensorImage.
+        int cropSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
+        int numRoration = sensorOrientation / 90;
+        // TODO: Define an ImageProcessor from TFLite Support Library to do preprocessing
+        ImageProcessor imageProcessor =
+                new ImageProcessor.Builder()
+                        .add(new ResizeWithCropOrPadOp(cropSize, cropSize))
+                        .add(new ResizeOp(imageSizeX, imageSizeY, ResizeOp.ResizeMethod.NEAREST_NEIGHBOR))
+                        .add(new Rot90Op(numRoration))
+                        .add(new NormalizeOp(PROBABILITY_MEAN, PROBABILITY_STD))
+                        .build();
+        return imageProcessor.process(inputImageBuffer);
+    }
 
 }
 

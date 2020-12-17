@@ -19,62 +19,62 @@
 		},
 		"s3PublicPolicy": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "NONE"
 		},
 		"s3PrivatePolicy": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "NONE"
 		},
 		"s3ProtectedPolicy": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "NONE"
 		},
 		"s3UploadsPolicy": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "NONE"
 		},
 		"s3ReadPolicy": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "NONE"
 		},
 		"s3PermissionsAuthenticatedPublic": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "DISALLOW"
 		},
 		"s3PermissionsAuthenticatedProtected": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "DISALLOW"
 		},
 		"s3PermissionsAuthenticatedPrivate": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "DISALLOW"
 		},
 		"s3PermissionsAuthenticatedUploads": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "DISALLOW"
 		},
 		"s3PermissionsGuestPublic": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "DISALLOW"
 		},
 		"s3PermissionsGuestUploads": {
 			"Type": "String",
-			"Default" : "ALLOW"		},
+			"Default" : "DISALLOW"		},
 		"AuthenticatedAllowList": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "DISALLOW"
 		},
 		"GuestAllowList": {
 			"Type": "String",
-			"Default" : "ALLOW"
+			"Default" : "DISALLOW"
 		},
 		"selectedGuestPermissions": {
 			"Type": "CommaDelimitedList",
-			"Default" : "ALLOW"
+			"Default" : "NONE"
 		},
 		"selectedAuthenticatedPermissions": {
 			"Type": "CommaDelimitedList",
-			"Default" : "ALLOW"
+			"Default" : "NONE"
 		},
 		"env": {
 			"Type": "String"
@@ -141,7 +141,7 @@
 			"Fn::Not" : [{
 				"Fn::Equals" : [
 					 {"Ref" : "s3PermissionsAuthenticatedUploads"},
-					 "ALLOW"
+					 "DISALLOW"
 				]
 		 }]
 		},
@@ -149,7 +149,7 @@
 			"Fn::Not" : [{
 				"Fn::Equals" : [
 					 {"Ref" : "s3PermissionsGuestPublic"},
-					 "ALLOW"
+					 "DISALLOW"
 				]
 		 }]
 		},

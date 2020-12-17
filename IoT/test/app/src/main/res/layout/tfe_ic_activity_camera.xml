@@ -14,6 +14,7 @@
  limitations under the License.
 -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,13 +27,15 @@
         android:orientation="vertical">
 
 
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/black"
-            tools:context="com.example.test.CameraActivity" />
+            tools:context="com.example.test.CameraActivity" >
+
+
+        </FrameLayout>
 
 
         <androidx.appcompat.widget.Toolbar
@@ -53,4 +56,15 @@
     <include
         android:id="@+id/bottom_sheet_layout"
         layout="@layout/tfe_ic_layout_bottom_sheet" />
+
+    <TextView
+        android:id="@+id/tv_ai_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:shadowColor="@color/pink_700"
+        android:text="보이시나요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/white"
+        android:textColorHighlight="#3F51B5" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

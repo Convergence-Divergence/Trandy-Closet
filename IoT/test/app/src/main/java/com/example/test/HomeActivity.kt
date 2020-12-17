@@ -87,10 +87,10 @@ class HomeActivity : AppCompatActivity() {
         getCurrentWeather()
 
         // 탠서플로우 써보까
-//        bt_test.setOnClickListener {
-//            val i = Intent(this, ClassifierActivity::class.java)
-//            startActivity(i)
-//        }
+        bt_pop.setOnClickListener {
+            val i = Intent(this, ClassifierActivity::class.java)
+            startActivity(i)
+        }
         bt_test.setOnClickListener {
             var input = Array<FloatArray>(1){FloatArray(3)}
             input[0][0] = 255F

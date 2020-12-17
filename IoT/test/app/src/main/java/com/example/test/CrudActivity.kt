@@ -28,6 +28,8 @@ class CrudActivity : AppCompatActivity() {
     private var CAMERA_FACING = Camera.CameraInfo.CAMERA_FACING_FRONT
     private var myCameraPreview: MyCameraPreview? = null
 
+    private var ac1 = this
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 상태바를 안보이도록 합니다.
@@ -143,4 +145,5 @@ class CrudActivity : AppCompatActivity() {
         val declaredLength = fileDescriptor.getDeclaredLength()
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
     }
+
 }

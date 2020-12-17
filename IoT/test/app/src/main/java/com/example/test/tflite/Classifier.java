@@ -16,17 +16,26 @@ limitations under the License.
 package com.example.test.tflite;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.os.Trace;
+import android.util.Log;
+import android.widget.TextView;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
+
+import com.example.test.ClassifierActivity;
+import com.example.test.R;
 import com.example.test.env.Logger;
 import org.tensorflow.lite.support.common.FileUtil;
 import org.tensorflow.lite.support.common.TensorOperator;
 import org.tensorflow.lite.support.common.TensorProcessor;
+import org.tensorflow.lite.support.common.ops.NormalizeOp;
 import org.tensorflow.lite.support.image.ImageProcessor;
 import org.tensorflow.lite.support.image.TensorImage;
 import org.tensorflow.lite.support.image.ops.ResizeOp;
@@ -36,13 +45,18 @@ import org.tensorflow.lite.support.image.ops.Rot90Op;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+
+import kotlin.jvm.internal.Intrinsics;
 
 /** A classifier specialized to label images using TensorFlow Lite. */
 public abstract class Classifier {
@@ -66,6 +80,8 @@ public abstract class Classifier {
   /** Image size along the y axis. */
   private final int imageSizeY;
 
+  private Activity context;
+  private Context context2;
   /** Optional GPU delegate for acceleration. */
   // TODO: Declare a GPU delegate
 
@@ -175,8 +191,13 @@ public abstract class Classifier {
   }
 
   /** Initializes a {@code Classifier}. */
-  protected Classifier(Activity activity, Device device, int numThreads) throws IOException {
-    tfliteModel = FileUtil.loadMappedFile(activity, getModelPath());
+  protected Classifier(Activity context, Device device, int numThreads) throws IOException {
+    this.context = context;
+    tfliteModel = FileUtil.loadMappedFile(context, getModelPath());
+
+    context2 = context;
+
+
     switch (device) {
       case GPU:
         // TODO: Create a GPU delegate instance and add it to the interpreter options
@@ -191,7 +212,7 @@ public abstract class Classifier {
     tflite = new Interpreter(tfliteModel, tfliteOptions);
 
     // Loads labels out from the label file.
-    labels = FileUtil.loadLabels(activity, getLabelPath());
+    labels = FileUtil.loadLabels(context, getLabelPath());
 
     // Reads type and shape of input and output tensors, respectively.
     int imageTensorIndex = 0;
@@ -227,6 +248,94 @@ public abstract class Classifier {
     long endTimeForLoadImage = SystemClock.uptimeMillis();
     Trace.endSection();
     LOGGER.v("Timecost to load the image: " + (endTimeForLoadImage - startTimeForLoadImage));
+
+    // 레츠고!!
+    int redColors = 0;
+    int greenColors = 0;
+    int blueColors = 0;
+    int pixelCount = 0;
+    for (int y = 0; y < bitmap.getHeight(); y++)
+    {
+      for (int x = 0; x < bitmap.getWidth(); x++)
+      {
+        int c = bitmap.getPixel(x, y);
+        pixelCount++;
+        redColors += Color.red(c);
+        greenColors += Color.green(c);
+        blueColors += Color.blue(c);
+      }
+    }
+    // calculate average of bitmap r,g,b values
+    float red = (redColors/pixelCount);
+    float green = (greenColors/pixelCount);
+    float blue = (blueColors/pixelCount);
+
+    byte var3 = 1;
+    int a;
+    float[] var11;
+    float[][] var4 = new float[var3][];
+    for(a = 0; a < var3; ++a) {
+      var11 = new float[3];
+      var4[a] = var11;
+    }
+
+    float[][] input = (float[][])var4;
+
+
+    input[0][0] = red;
+    input[0][1] = green;
+    input[0][2] = blue;
+
+    byte var13 = 1;
+    float[][] var15 = new float[var13][];
+    int var6;
+    for(var6 = 0; var6 < var13; ++var6) {
+      var11 = new float[12];
+      var15[var6] = var11;
+    }
+
+    float[][] output = (float[][])var15;
+
+    Interpreter tflite2 = getTfliteInterpreter("color.tflite");
+
+    if (tflite2 == null) {
+      Intrinsics.throwNpe();
+    }
+
+    tflite2.run(input, output);
+
+
+    HashMap<Integer,String> map = new HashMap<>();
+    map.put(0,"빨간색");
+    map.put(1,"초록색");
+    map.put(2,"파란색");
+    map.put(3,"하늘색");
+    map.put(4,"갈색");
+    map.put(5,"핑크색");
+    map.put(6,"네이비색");
+    map.put(7,"노란색");
+    map.put(8,"오렌지색");
+    map.put(9,"흰색");
+    map.put(10,"회색");
+    map.put(11,"검정색");
+
+
+    Log.d("해석", String.valueOf(output));
+    for(a=0; a<12; ++a) {
+      Log.d("해석", String.valueOf(map.get(a) + " " + output[0][a]*100 + "%"));
+    }
+
+    float max = output[0][0];
+    int k = 0 ;
+    for(int i=1 ; i<12 ; i++){ if(output[0][i] >= max){ max = output[0][i]; k=i; } }
+
+    Log.d("최대값은", String.valueOf(map.get(k) + " " + max*100 + "%"));
+
+
+    TextView text1 = (TextView) ((ClassifierActivity) context2).findViewById(R.id.tv_ai_color);
+    text1.setText(String.valueOf(map.get(k) + " " + max*100 + "%"));
+
+    // 레츠고 끝!!
 
     // Runs the inference call.
     Trace.beginSection("runInference");
@@ -338,4 +447,26 @@ public abstract class Classifier {
    * 1.0f, respectively.
    */
   protected abstract TensorOperator getPostprocessNormalizeOp();
+
+
+  private Interpreter getTfliteInterpreter(String modelPath) {
+    try {
+      return new Interpreter(loadModelFile(context, modelPath));
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  // 모델을 읽어오는 함수로, 텐서플로 라이트 홈페이지에 있다.
+  // MappedByteBuffer 바이트 버퍼를 Interpreter 객체에 전달하면 모델 해석을 할 수 있다.
+  private MappedByteBuffer loadModelFile(Activity activity, String modelPath) throws IOException {
+    AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(modelPath);
+    FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+    FileChannel fileChannel = inputStream.getChannel();
+    long startOffset = fileDescriptor.getStartOffset();
+    long declaredLength = fileDescriptor.getDeclaredLength();
+    return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+  }
 }

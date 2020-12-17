@@ -1629,5 +1629,8 @@ tflite/Classifier.java : `public List<Recognition> recognizeImage(final Bitmap b
 
 <br>
 
+**두 앱 합치기 완료**
 
+![image-20201217184950554](README.assets/image-20201217184950554.png)  ![image-20201217185022464](README.assets/image-20201217185022464.png)  
 
+Git commit 내용 201217 cld+iot complete

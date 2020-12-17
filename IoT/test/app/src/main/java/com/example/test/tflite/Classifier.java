@@ -50,6 +50,7 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -325,6 +326,7 @@ public abstract class Classifier {
       Log.d("해석", String.valueOf(map.get(a) + " " + output[0][a]*100 + "%"));
     }
 
+//    Arrays.sort(output[0]);
     float max = output[0][0];
     int k = 0 ;
     for(int i=1 ; i<12 ; i++){ if(output[0][i] >= max){ max = output[0][i]; k=i; } }

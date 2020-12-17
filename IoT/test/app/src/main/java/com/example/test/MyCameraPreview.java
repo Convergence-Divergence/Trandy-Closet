@@ -3,8 +3,10 @@ package com.example.test;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.net.Uri;
@@ -16,11 +18,18 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import org.tensorflow.lite.Interpreter;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+
+import kotlin.jvm.internal.Intrinsics;
 
 public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -62,7 +71,12 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
 
         // get display orientation
         mDisplayOrientation = ((Activity) context).getWindowManager().getDefaultDisplay().getRotation();
+
+
+
     }
+
+
 
     public void surfaceCreated(SurfaceHolder holder) {
         Log.d(TAG, "surfaceCreated");
@@ -194,6 +208,73 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = BitmapFactory.decodeByteArray( data, 0, data.length, options);
 
+
+            // 여기서 색 텐서 모델 사용!!!!
+            int redColors = 0;
+            int greenColors = 0;
+            int blueColors = 0;
+            int pixelCount = 0;
+
+            for (int y = 0; y < bitmap.getHeight(); y++)
+            {
+                for (int x = 0; x < bitmap.getWidth(); x++)
+                {
+                    int c = bitmap.getPixel(x, y);
+                    pixelCount++;
+                    redColors += Color.red(c);
+                    greenColors += Color.green(c);
+                    blueColors += Color.blue(c);
+                }
+            }
+            // calculate average of bitmap r,g,b values
+            float red = (redColors/pixelCount);
+            float green = (greenColors/pixelCount);
+            float blue = (blueColors/pixelCount);
+
+            byte var3 = 1;
+            int a;
+            float[] var11;
+            float[][] var4 = new float[var3][];
+            for(a = 0; a < var3; ++a) {
+                var11 = new float[3];
+                var4[a] = var11;
+            }
+
+            float[][] input = (float[][])var4;
+
+
+            input[0][0] = red;
+            input[0][1] = green;
+            input[0][2] = blue;
+
+
+            byte var13 = 1;
+            float[][] var15 = new float[var13][];
+            int var6;
+            for(var6 = 0; var6 < var13; ++var6) {
+                var11 = new float[12];
+                var15[var6] = var11;
+            }
+
+            float[][] output = (float[][])var15;
+
+            // 1번 모델을 해석할 인터프리터 생성
+
+            // 모델 구동.
+            // 정확하게는 from_session 함수의 output_tensors 매개변수에 전달된 연산 호출
+            Interpreter tflite = CrudActivity.getTfliteInterpreter("color.tflite");
+
+            if (tflite == null) {
+                Intrinsics.throwNpe();
+            }
+
+            tflite.run(input, output);
+
+            Log.d("해석",output.toString());
+
+
+            // 색 텐서 모델 사용 끝!!!!!
+
             //이미지를 디바이스 방향으로 회전
             Matrix matrix = new Matrix();
 
@@ -217,6 +298,9 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
             //파일로 저장
             Log.d("데이타!", String.valueOf(currentData));
             new MyCameraPreview.SaveImageTask().execute(currentData);
+
+
+
 
         }
     };
@@ -279,4 +363,32 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
         }
 
     }
+
+
+//
+//    private Interpreter getTfliteInterpreter(String modelPath) {
+//        try {
+//            return new Interpreter(loadModelFile(CrudActivity.this, modelPath));
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+//
+//    // 모델을 읽어오는 함수로, 텐서플로 라이트 홈페이지에 있다.
+//    // MappedByteBuffer 바이트 버퍼를 Interpreter 객체에 전달하면 모델 해석을 할 수 있다.
+//    private MappedByteBuffer loadModelFile(Activity activity, String modelPath) throws IOException {
+//        AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(modelPath);
+//        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+//        FileChannel fileChannel = inputStream.getChannel();
+//        long startOffset = fileDescriptor.getStartOffset();
+//        long declaredLength = fileDescriptor.getDeclaredLength();
+//        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+//    }
+
+
+
 }
+
+

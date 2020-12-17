@@ -33,6 +33,8 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
+import java.util.*
+import kotlin.collections.HashMap
 
 class HomeActivity : AppCompatActivity() {
 
@@ -85,10 +87,31 @@ class HomeActivity : AppCompatActivity() {
         getCurrentWeather()
 
         // 탠서플로우 써보까
+//        bt_test.setOnClickListener {
+//            val i = Intent(this, ClassifierActivity::class.java)
+//            startActivity(i)
+//        }
         bt_test.setOnClickListener {
-            val i = Intent(this, ClassifierActivity::class.java)
-            startActivity(i)
+            var input = Array<FloatArray>(1){FloatArray(3)}
+            input[0][0] = 255F
+            input[0][1] = 94F
+            input[0][2] = 0F
+            var output = Array<FloatArray>(1, {FloatArray(12)})
+            val tflite = getTfliteInterpreter("color.tflite")
+            Log.d("머지이건","${tflite}")
+            tflite!!.run(input, output)
+
+            for(a in input[0]) {
+                Log.d("인풋 3개", "${a}")
+            }
+
+            Log.d("머지이건","${output[0].size}")
+            for(a in output[0].indices) {
+                Log.d("아웃풋 12개", "인덱스 ${a}, 밸류 ${output[0][a]}")
+            }
+            tv_test.setText((output[0]).toString())
         }
+
 
         // 내 옷장서 일정 추가해보자
         bt_my.setOnClickListener {

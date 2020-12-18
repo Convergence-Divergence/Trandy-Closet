@@ -16,13 +16,17 @@
 
 package com.example.test;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
+import android.os.Build;
 import android.os.SystemClock;
 import android.util.Size;
 import android.util.TypedValue;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.test.env.BorderedText;
 import com.example.test.env.Logger;
@@ -46,6 +50,9 @@ public class ClassifierActivity extends com.example.test.CameraActivity implemen
   /** Input image size of the model along y axis. */
   private int imageSizeY;
 
+
+
+
   @Override
   protected int getLayoutId() {
     return R.layout.tfe_ic_camera_connection_fragment;
@@ -64,11 +71,16 @@ public class ClassifierActivity extends com.example.test.CameraActivity implemen
     borderedText = new BorderedText(textSizePx);
     borderedText.setTypeface(Typeface.MONOSPACE);
 
+
+
+
     recreateClassifier(getDevice(), getNumThreads());
     if (classifier == null) {
       LOGGER.e("No classifier on preview!");
       return;
     }
+
+
 
     previewWidth = size.getWidth();
     previewHeight = size.getHeight();
@@ -78,12 +90,15 @@ public class ClassifierActivity extends com.example.test.CameraActivity implemen
 
     LOGGER.i("Initializing at size %dx%d", previewWidth, previewHeight);
     rgbFrameBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Config.ARGB_8888);
+
+
   }
 
   @Override
   protected void processImage() {
     rgbFrameBitmap.setPixels(getRgbBytes(), 0, previewWidth, 0, 0, previewWidth, previewHeight);
     final int cropSize = Math.min(previewWidth, previewHeight);
+
 
     runInBackground(
         new Runnable() {
@@ -143,4 +158,7 @@ public class ClassifierActivity extends com.example.test.CameraActivity implemen
     imageSizeX = classifier.getImageSizeX();
     imageSizeY = classifier.getImageSizeY();
   }
+
+
+
 }

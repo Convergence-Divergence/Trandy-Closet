@@ -17,8 +17,8 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/homeToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:popupTheme="@style/AppTheme.ImageClassification" />
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -41,35 +41,29 @@
 
                     <Button
                         android:id="@+id/bt_my"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_marginTop="100dp"
-                        android:text="내 옷장" />
+                        android:text="내 옷 추가" />
 
                     <Button
                         android:id="@+id/bt_pop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:text="유행도 평가" />
 
                     <Button
                         android:id="@+id/bt_recom"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:text="코디 추천" />
 
-                    <TextView
-                        android:id="@+id/tv_test"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/bt_test"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Button" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/examplesRv"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="#DD8686" />
 
                 </LinearLayout>
 
@@ -86,14 +80,14 @@
 
                         <ImageView
                             android:id="@+id/iv_icon"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
                             android:layout_weight="1"
                             android:background="@color/black"
                             tools:srcCompat="@tools:sample/avatars" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
@@ -154,12 +148,7 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/examplesRv"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center_vertical"
-                android:background="#DD8686" />
+
 
         </FrameLayout>
 

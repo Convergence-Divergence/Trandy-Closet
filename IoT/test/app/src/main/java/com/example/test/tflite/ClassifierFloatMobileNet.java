@@ -54,10 +54,22 @@ public class ClassifierFloatMobileNet extends Classifier {
     return "model.tflite";
   }
 
+//  @Override
+//  protected String getModelPath() {
+//    return "model_trend_classify_1218.tflite";
+//  }
+
+
+
   @Override
   protected String getLabelPath() {
     return "labels.txt";
   }
+
+//  @Override
+//  protected String getLabelPath() {
+//    return "label_trend.txt";
+//  }
 
   @Override
   protected TensorOperator getPreprocessNormalizeOp() {

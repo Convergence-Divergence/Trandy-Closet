@@ -11,8 +11,14 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.amplifyframework.AmplifyException
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.storage.options.StorageUploadFileOptions
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin
 import kotlinx.android.synthetic.main.activity_crud.*
 import org.tensorflow.lite.Interpreter
+import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 import java.nio.MappedByteBuffer
@@ -75,8 +81,21 @@ class CrudActivity : AppCompatActivity() {
 
         }
 
+        try {
+            // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
+            Amplify.addPlugin(AWSCognitoAuthPlugin())
+            Amplify.addPlugin(AWSS3StoragePlugin())
+            Amplify.configure(applicationContext)
+
+            Log.i("MyAmplifyApp", "Initialized Amplify")
+        } catch (error: AmplifyException) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error)
+        }
+
+
         btnCapture.setOnClickListener {
             myCameraPreview?.takePicture()
+//            uploadFile()
         }
     }
 
@@ -124,26 +143,31 @@ class CrudActivity : AppCompatActivity() {
     // 모델 파일 인터프리터를 생성하는 공통 함수
     // loadModelFile 함수에 예외가 포함되어 있기 때문에 반드시 try, catch 블록이 필요하다.
 
-    private fun getTfliteInterpreter(modelPath:String): Interpreter? {
-        try
-        {
-            return Interpreter(loadModelFile(this@CrudActivity, modelPath))
-        }
-        catch (e:Exception) {
-            e.printStackTrace()
-        }
-        return null
-    }
-    // 모델을 읽어오는 함수로, 텐서플로 라이트 홈페이지에 있다.
-    // MappedByteBuffer 바이트 버퍼를 Interpreter 객체에 전달하면 모델 해석을 할 수 있다.
-    @Throws(IOException::class)
-    private fun loadModelFile(activity: Activity, modelPath:String): MappedByteBuffer {
-        val fileDescriptor = activity.getAssets().openFd(modelPath)
-        val inputStream = FileInputStream(fileDescriptor.getFileDescriptor())
-        val fileChannel = inputStream.getChannel()
-        val startOffset = fileDescriptor.getStartOffset()
-        val declaredLength = fileDescriptor.getDeclaredLength()
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+
+    private fun uploadFile() {
+        try {
+                    // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
+                    Amplify.addPlugin(AWSCognitoAuthPlugin())
+                    Amplify.addPlugin(AWSS3StoragePlugin())
+                    Amplify.configure(applicationContext)
+
+                    Log.i("MyAmplifyApp", "Initialized Amplify")
+                } catch (error: AmplifyException) {
+                    Log.e("MyAmplifyApp", "Could not initialize Amplify", error)
+                }
+
+        val exampleFile = File(applicationContext.filesDir, "ExampleKey")
+
+        exampleFile.writeText("Example file contents")
+
+        Amplify.Storage.uploadFile(
+            "ExampleKe",
+            exampleFile,
+            StorageUploadFileOptions.defaultInstance(),
+            { progress -> Log.i("MyAmplifyApp", "Fraction completed: ${progress.fractionCompleted}") },
+            { result -> Log.i("MyAmplifyApp", "Successfully uploaded: ${result.getKey()}") },
+            { error -> Log.e("MyAmplifyApp", "Upload failed", error) }
+        )
     }
 
 }

@@ -18,6 +18,13 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.storage.options.StorageDownloadFileOptions;
+import com.amplifyframework.storage.options.StorageUploadFileOptions;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+
 import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.support.common.TensorOperator;
 import org.tensorflow.lite.support.image.ImageProcessor;
@@ -27,11 +34,13 @@ import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
 import org.tensorflow.lite.support.image.ops.Rot90Op;
 import org.tensorflow.lite.support.common.ops.NormalizeOp;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -66,6 +75,7 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
     private Activity context;
 
     public MyCameraPreview(Activity context, int cameraId) {
+
         super(context);
         this.context = context;
         Log.d(TAG, "MyCameraPreview cameraId : " + cameraId);
@@ -94,7 +104,16 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
         // get display orientation
         mDisplayOrientation = ((Activity) context).getWindowManager().getDefaultDisplay().getRotation();
 
+        try {
+            // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+//            Amplify.configure(getApplicationContext());
 
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
 
     }
 
@@ -340,6 +359,8 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
      */
     private class SaveImageTask extends AsyncTask<byte[], Void, Void> {
 
+
+
         @Override
         protected Void doInBackground(byte[]... data) {
             FileOutputStream outStream = null;
@@ -353,6 +374,15 @@ public class MyCameraPreview extends SurfaceView implements SurfaceHolder.Callba
 
                 String fileName = String.format("%d.jpg", System.currentTimeMillis());
                 File outputFile = new File(path, fileName);
+
+
+
+//                Amplify.Storage.uploadFile(
+//                        fileName,
+//                        outputFile,
+//                        result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
+//                        storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
+//                );
 
                 outStream = new FileOutputStream(outputFile);
                 outStream.write(data[0]);

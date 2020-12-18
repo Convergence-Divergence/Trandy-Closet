@@ -15,21 +15,29 @@ limitations under the License.
 
 package com.example.test.tflite;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.graphics.Camera;
 import android.graphics.Color;
 import android.graphics.RectF;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.os.Trace;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
 
+import com.amplifyframework.core.Amplify;
+import com.example.test.CameraActivity;
 import com.example.test.ClassifierActivity;
+import com.example.test.ClassifierActivity2;
 import com.example.test.R;
 import com.example.test.env.Logger;
 import org.tensorflow.lite.support.common.FileUtil;
@@ -45,7 +53,10 @@ import org.tensorflow.lite.support.image.ops.Rot90Op;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -58,6 +69,8 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 import kotlin.jvm.internal.Intrinsics;
+
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
 
 /** A classifier specialized to label images using TensorFlow Lite. */
 public abstract class Classifier {
@@ -83,6 +96,12 @@ public abstract class Classifier {
 
   private Activity context;
   private Context context2;
+  private static Activity context3;
+
+
+
+
+
   /** Optional GPU delegate for acceleration. */
   // TODO: Declare a GPU delegate
 
@@ -115,9 +134,9 @@ public abstract class Classifier {
    * @param numThreads The number of threads to use for classification.
    * @return A classifier with the desired configuration.
    */
-  public static Classifier create(Activity activity, Device device, int numThreads)
-      throws IOException {
+  public static Classifier create(Activity activity, Device device, int numThreads) throws IOException {
 
+    context3 = activity;
     return new ClassifierFloatMobileNet(activity, device, numThreads);
   }
 
@@ -146,6 +165,7 @@ public abstract class Classifier {
       this.title = title;
       this.confidence = confidence;
       this.location = location;
+
     }
 
     public String getId() {
@@ -197,6 +217,8 @@ public abstract class Classifier {
     tfliteModel = FileUtil.loadMappedFile(context, getModelPath());
 
     context2 = context;
+
+
 
 
     switch (device) {
@@ -321,21 +343,121 @@ public abstract class Classifier {
     map.put(11,"검정색");
 
 
-    Log.d("해석", String.valueOf(output));
-    for(a=0; a<12; ++a) {
-      Log.d("해석", String.valueOf(map.get(a) + " " + output[0][a]*100 + "%"));
-    }
+//    Log.d("해석", String.valueOf(output));
+//    for(a=0; a<12; ++a) {
+//      Log.d("해석", String.valueOf(map.get(a) + " " + output[0][a]*100 + "%"));
+//    }
 
 //    Arrays.sort(output[0]);
     float max = output[0][0];
+    float max2 = output[0][0];
+    float max3 = output[0][0];
     int k = 0 ;
+    int k2 = 0;
+    int k3 = 0;
     for(int i=1 ; i<12 ; i++){ if(output[0][i] >= max){ max = output[0][i]; k=i; } }
 
-    Log.d("최대값은", String.valueOf(map.get(k) + " " + max*100 + "%"));
+    for(int i=1 ; i<12 ; i++){ if(output[0][i] >= max2 ){ if ( output[0][i] != max ){ max2 = output[0][i]; k2=i; } } }
+    for(int i=1 ; i<12 ; i++){ if(output[0][i] >= max3 ){ if ( output[0][i] != max ){ if ( output[0][i] != max2 ){ max3 = output[0][i]; k3=i; } } } }
 
+//    Log.d("최대값은", String.valueOf(map.get(k) + " " + max*100 + "%"));
 
     TextView text1 = (TextView) ((ClassifierActivity) context2).findViewById(R.id.tv_ai_color);
+//    TextView text_one = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item);
     text1.setText(String.valueOf(map.get(k) + " " + max*100 + "%"));
+//    text_one.setText(String.valueOf(map.get(k) + " " + max*100 + "%"));
+
+
+    int finalK = k;
+    int finalK1 = k2;
+    int finalK2 = k3;
+    float finalMax = max;
+    float finalMax1 = max2;
+    float finalMax2 = max3;
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        runOnUiThread(new Runnable(){
+          @SuppressLint("DefaultLocale")
+          @Override
+          public void run() {
+                TextView recognitionTextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item);
+                TextView recognitionValueTextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item_value);
+                TextView recognition1TextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item1);
+                TextView recognition1ValueTextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item1_value);
+                TextView recognition2TextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item2);
+                TextView recognition2ValueTextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item2_value);
+                recognitionTextView.setText(String.valueOf(map.get(finalK)));
+                recognition1TextView.setText(map.get(finalK1));
+                recognition2TextView.setText(map.get(finalK2));
+                // 아래에 색부분도 동시에 나오게
+                recognitionValueTextView.setText(
+                        String.format("%.2f", (100 * finalMax)) + "%");
+                recognition1ValueTextView.setText(
+                        String.format("%.2f", (100 * finalMax1)) + "%");
+                recognition2ValueTextView.setText(
+                        String.format("%.2f", (100 * finalMax2)) + "%");
+
+
+
+          }
+        });
+      }
+    }).start();
+//
+//    Log.d("최대값1", String.valueOf(map.get(k) + " " + max*100 + "%"));
+//    Log.d("최대값2", String.valueOf(map.get(k2) + " " + max2*100 + "%"));
+//    Log.d("최대값3", String.valueOf(map.get(k3) + " " + max3*100 + "%"));
+
+//    TextView recognitionTextView = (TextView) ((ClassifierActivity) context2).findViewById(R.id.detected2_item);
+//    TextView recognitionValueTextView = (TextView) ((ClassifierActivity) context2).findViewById(R.id.detected2_item_value);
+//    TextView recognition1TextView = (TextView) ((ClassifierActivity) context2).findViewById(R.id.detected2_item1);
+//    TextView recognition1ValueTextView = (TextView) ((ClassifierActivity) context2).findViewById(R.id.detected2_item1_value);
+//    TextView recognition2TextView = (TextView) ((ClassifierActivity) context2).findViewById(R.id.detected2_item2);
+//    TextView recognition2ValueTextView = (TextView) ((ClassifierActivity) context2).findViewById(R.id.detected2_item2_value);
+//
+//
+//    recognitionTextView.setText(String.valueOf(map.get(k)));
+//    recognition1TextView.setText(map.get(k2));
+//    recognition2TextView.setText(map.get(k3));
+//    // 아래에 색부분도 동시에 나오게
+//    recognitionValueTextView.setText(
+//            String.format("%.2f", (100 * max)) + "%");
+//    recognition1ValueTextView.setText(
+//            String.format("%.2f", (100 * max2)) + "%");
+//    recognition2ValueTextView.setText(
+//            String.format("%.2f", (100 * max3)) + "%");
+
+
+    Button okbtn = (Button) ((ClassifierActivity) context).findViewById(R.id.btn_ok);
+
+    okbtn.setOnClickListener(new Button.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        String ja = String.valueOf(System.currentTimeMillis());
+        saveBitmaptoJpeg(bitmap, "camtest", ja);
+
+
+        String ex_storage = Environment.getExternalStorageDirectory().getAbsolutePath();
+        // Get Absolute Path in External Sdcard
+        String foler_name = "/camtest/";
+        String file_name = ja+".jpg";
+        String string_path = ex_storage+foler_name;
+
+        File exampleFile = new File(string_path, file_name);
+
+
+        Amplify.Storage.uploadFile(
+                file_name,
+                exampleFile,
+                result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
+                storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
+        );
+      }
+    });
+
+
+
 
     // 레츠고 끝!!
 
@@ -471,4 +593,29 @@ public abstract class Classifier {
     long declaredLength = fileDescriptor.getDeclaredLength();
     return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
   }
+
+  public static void saveBitmaptoJpeg(Bitmap bitmap,String folder, String name){
+    String ex_storage = Environment.getExternalStorageDirectory().getAbsolutePath();
+    // Get Absolute Path in External Sdcard
+    String foler_name = "/"+folder+"/";
+    String file_name = name+".jpg";
+    String string_path = ex_storage+foler_name;
+
+    Log.d("제발",string_path);
+
+    File file_path;
+    try{
+      file_path = new File(string_path);
+      if(!file_path.isDirectory()){
+        file_path.mkdirs();
+      }
+      FileOutputStream out = new FileOutputStream(string_path+file_name);
+      bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+      out.close();
+    }catch(FileNotFoundException exception){
+      Log.e("FileNotFoundException", exception.getMessage());
+    }catch(IOException exception){
+      Log.e("IOException", exception.getMessage()); } }
+
+
 }

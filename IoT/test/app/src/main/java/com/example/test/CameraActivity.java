@@ -99,6 +99,8 @@ public abstract class CameraActivity extends AppCompatActivity
       recognitionValueTextView,
       recognition1ValueTextView,
       recognition2ValueTextView;
+
+
   protected TextView frameValueTextView,
       cropValueTextView,
       cameraResolutionTextView,
@@ -188,6 +190,8 @@ public abstract class CameraActivity extends AppCompatActivity
     recognition1ValueTextView = findViewById(R.id.detected_item1_value);
     recognition2TextView = findViewById(R.id.detected_item2);
     recognition2ValueTextView = findViewById(R.id.detected_item2_value);
+
+
 
     frameValueTextView = findViewById(R.id.frame_info);
     cropValueTextView = findViewById(R.id.crop_info);

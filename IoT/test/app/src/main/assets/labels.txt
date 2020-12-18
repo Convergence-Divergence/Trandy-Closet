@@ -1,15 +1,15 @@
-'cardigan',
-'coat',
-'dress',
-'hat',
-'jacket',
-'jumpsuit',
-'pants',
-'shirt,blouse',
-'shoe',
-'shorts',
-'skirt',
-'tights,stockings',
-'top,t-shirt,sweatshirt'
+Cardigan
+Coat
+Dress
+Hat
+Jacket
+Jumpsuit
+Pants
+Shirt / Blouse
+Shoe
+Shorts
+Skirt
+Tights / Stockings
+Top / T-shirt / Sweatshirt
 
 

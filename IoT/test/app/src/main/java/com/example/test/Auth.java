@@ -26,7 +26,7 @@ public class Auth extends AppCompatActivity {
                 Log.i(TAG, userStateDetails.getUserState().toString());
                 switch (userStateDetails.getUserState()){
                     case SIGNED_IN:
-                        Intent i = new Intent(Auth.this, MainActivity.class);
+                        Intent i = new Intent(Auth.this, HomeActivity.class);
                         startActivity(i);
                         break;
                     case SIGNED_OUT:

@@ -49,7 +49,7 @@ public class Auth extends AppCompatActivity {
     private void showSignIn() {
         try {
             AWSMobileClient.getInstance().showSignIn(this,
-                    SignInUIOptions.builder().nextActivity(MainActivity.class).build());
+                    SignInUIOptions.builder().nextActivity(HomeActivity.class).build());
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }

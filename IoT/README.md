@@ -1634,3 +1634,20 @@ tflite/Classifier.java : `public List<Recognition> recognizeImage(final Bitmap b
 ![image-20201217184950554](README.assets/image-20201217184950554.png)  ![image-20201217185022464](README.assets/image-20201217185022464.png)  
 
 Git commit 내용 201217 cld+iot complete
+<br>
+<br>
+# 12/18
+
+**한 것** : AI 모델 총 3개 안에서 돌리기
+
+<br>
+<br>
+
+# 12/19~ 20
+
+**한 것** : 일자별 CRUD 기존앱과 안붙
+
+해결해야하는 문제
+
+비트맵 방식 화이트만 조절 하기 -> 안되는듯 
+기존 crud 로컬에서 진행해도 android:requestLegacyExternalStorage="true" 에서 에러

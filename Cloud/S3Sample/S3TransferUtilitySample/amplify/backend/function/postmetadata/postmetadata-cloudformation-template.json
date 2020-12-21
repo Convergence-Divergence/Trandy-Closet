@@ -33,12 +33,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "Users",
+            "postmetadata",
             {
               "Fn::Join": [
                 "",
                 [
-                  "Users",
+                  "postmetadata",
                   "-",
                   {
                     "Ref": "env"
@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-s3transferimages1209-dev-133644-deployment",
-          "S3Key": "amplify-builds/Users-43373175715a64766f6d-build.zip"
+          "S3Key": "amplify-builds/postmetadata-6552666e717044686152-build.zip"
         }
       }
     },
@@ -79,12 +79,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "s3transferimages1209LambdaRoleccbd1968",
+            "s3transferimages1209LambdaRole1f4e5306",
             {
               "Fn::Join": [
                 "",
                 [
-                  "s3transferimages1209LambdaRoleccbd1968",
+                  "s3transferimages1209LambdaRole1f4e5306",
                   "-",
                   {
                     "Ref": "env"

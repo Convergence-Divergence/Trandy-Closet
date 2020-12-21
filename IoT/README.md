@@ -1647,7 +1647,47 @@ Git commit 내용 201217 cld+iot complete
 
 **한 것** : 일자별 CRUD 기존앱과 안붙
 
-해결해야하는 문제
+**해결해야하는 문제**
 
 비트맵 방식 화이트만 조절 하기 -> 안되는듯 
-기존 crud 로컬에서 진행해도 android:requestLegacyExternalStorage="true" 에서 에러
+
+https://jamssoft.tistory.com/159
+
+<br>
+
+### 카메라 설정 수정
+
+카메라 설정은 확대/축소 수준에서 **노출 보정**까지 카메라가 사진 촬영하는 방법을 변경합니다. 이 예는 미리보기 크기만 변경합니다. 더 많은 내용은 카메라 애플리케이션의 소스 코드를 참조하세요.
+
+```java
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
+        // Now that the size is known, set up the camera parameters and begin
+        // the preview.
+        Camera.Parameters parameters = mCamera.getParameters();
+        parameters.setPreviewSize(previewSize.width, previewSize.height);
+        requestLayout();
+        mCamera.setParameters(parameters);
+
+        // Important: Call startPreview() to start updating the preview surface.
+        // Preview must be started before you can take a picture.
+        mCamera.startPreview();
+    }
+    
+```
+
+<br>
+
+<br>
+
+**기존 crud 로컬에서 진행해도 android:requestLegacyExternalStorage="true" 에서 에러**
+
+**안드로이드 10.0(Q, API29)**부터 발생하는 문제인데 긴급 해결책은 아래의 답변을 참고하면 됩니다.
+
+https://stackoverflow.com/a/57804657/7225691
+
+```
+<application android:requestLegacyExternalStorage="true" ... >
+```
+
+<br>

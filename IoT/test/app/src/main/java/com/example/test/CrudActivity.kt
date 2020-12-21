@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.core.Amplify
+import com.amplifyframework.storage.options.StorageDownloadFileOptions
 import com.amplifyframework.storage.options.StorageUploadFileOptions
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin
 import kotlinx.android.synthetic.main.activity_crud.*
@@ -95,7 +96,10 @@ class CrudActivity : AppCompatActivity() {
 
         btnCapture.setOnClickListener {
             myCameraPreview?.takePicture()
-//            uploadFile()
+
+
+
+            uploadFile()
         }
     }
 
@@ -161,12 +165,19 @@ class CrudActivity : AppCompatActivity() {
         exampleFile.writeText("Example file contents")
 
         Amplify.Storage.uploadFile(
-            "ExampleKe",
+            "ExampleKey",
             exampleFile,
             StorageUploadFileOptions.defaultInstance(),
             { progress -> Log.i("MyAmplifyApp", "Fraction completed: ${progress.fractionCompleted}") },
             { result -> Log.i("MyAmplifyApp", "Successfully uploaded: ${result.getKey()}") },
             { error -> Log.e("MyAmplifyApp", "Upload failed", error) }
+        )
+
+        Amplify.Storage.downloadFile(
+            "ExampleKey",
+            File("${applicationContext.filesDir.toString()}/123123.jpg"),
+            { result -> Log.i("MyAmplifyApp", "Successfully downloaded: ${result.getFile().name}") },
+            { error -> Log.e("MyAmplifyApp", "Download Failure", error) }
         )
     }
 

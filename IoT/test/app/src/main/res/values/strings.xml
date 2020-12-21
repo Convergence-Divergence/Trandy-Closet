@@ -12,9 +12,9 @@
     <string name="example_3_subtitle">Event style implementation, day labels as header view, single selection, month scroll listener. Similar to what is in the Google Calendar app.</string>
     <string name="example_4_title">Example 4</string>
     <string name="example_4_subtitle">Continuous selection within one month and across multiple months, dates older than the current day are disabled. Similar to what is in the Airbnb app.</string>
-    <string name="example_5_title">Example 5</string>
-    <string name="example_5_subtitle">Single selection, programmatic calendar scrolling, generates six rows for all months showing \"endOfGrid\" implementation of \"outDateStyle\" option. A flight schedule calender.</string>
-    <string name="example_6_title">Example 6</string>
+    <string name="example_5_title">Go</string>
+    <string name="example_5_subtitle"></string>
+    <string name="example_6_title">Go</string>
     <string name="example_6_subtitle">Custom date width and height, custom month view, item decoration on the CalendarView, continuous horizontal scrolling style.</string>
     <string name="example_7_title">Example 7</string>
     <string name="example_7_subtitle">Week mode calendar with single selection. Shows usage of \"hasBoundaries\" and  \"maxRowCount\" properties.</string>
@@ -78,4 +78,10 @@
     <string name="cancel_all">Cancel all</string>
     <string name="refreshing">Refreshing</string>
     <string name="please_wait">Please wait</string>
+    <string name="title_activity_main3">MainActivity3</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

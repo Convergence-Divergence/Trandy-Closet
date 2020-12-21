@@ -272,9 +272,10 @@ public abstract class Classifier2 {
     int greenColors = 0;
     int blueColors = 0;
     int pixelCount = 0;
-    for (int y = 0; y < bitmap.getHeight(); y++)
+    // 가운데 1/9로 수정!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    for (int y = bitmap.getHeight()*4/9; y < bitmap.getHeight()*5/9 ; y++)
     {
-      for (int x = 0; x < bitmap.getWidth(); x++)
+      for (int x = bitmap.getWidth()*4/9; x < bitmap.getWidth()*5/9; x++)
       {
         int c = bitmap.getPixel(x, y);
         pixelCount++;
@@ -283,6 +284,17 @@ public abstract class Classifier2 {
         blueColors += Color.blue(c);
       }
     }
+//    for (int y = 0; y < bitmap.getHeight(); y++)
+//    {
+//      for (int x = 0; x < bitmap.getWidth(); x++)
+//      {
+//        int c = bitmap.getPixel(x, y);
+//        pixelCount++;
+//        redColors += Color.red(c);
+//        greenColors += Color.green(c);
+//        blueColors += Color.blue(c);
+//      }
+//    }
     // calculate average of bitmap r,g,b values
     float red = (redColors/pixelCount);
     float green = (greenColors/pixelCount);

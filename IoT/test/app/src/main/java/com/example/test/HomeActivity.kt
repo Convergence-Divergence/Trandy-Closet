@@ -18,6 +18,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.amplifyframework.AmplifyException
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin
 import com.bumptech.glide.Glide
 import com.example.test.databinding.HomeActivityBinding
 import kotlinx.android.synthetic.main.fragment_photo.*
@@ -72,6 +76,17 @@ class HomeActivity : AppCompatActivity() {
         binding = HomeActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.homeToolbar)
+
+        try {
+            // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
+            Amplify.addPlugin(AWSCognitoAuthPlugin())
+            Amplify.addPlugin(AWSS3StoragePlugin())
+            Amplify.configure(applicationContext)
+
+            Log.i("MyAmplifyApp", "Initialized Amplify")
+        } catch (error: AmplifyException) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error)
+        }
 
         bt_recom.setOnClickListener {
             val i = Intent(this, MyclothActivity::class.java)

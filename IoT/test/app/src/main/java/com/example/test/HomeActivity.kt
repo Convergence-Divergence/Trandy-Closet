@@ -73,6 +73,8 @@ class HomeActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         binding = HomeActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.homeToolbar)
@@ -99,6 +101,8 @@ class HomeActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
         }
 
+
+
         getCurrentWeather()
 
         // 탠서플로우 써보까
@@ -114,6 +118,12 @@ class HomeActivity : AppCompatActivity() {
         bt_my.setOnClickListener {
 //            val i = Intent(this, MainActivity2::class.java)
             val i = Intent(this, ClassifierActivity::class.java)
+            startActivity(i)
+        }
+
+        // 내 옷장서 일정 추가해보자
+        bt_test.setOnClickListener {
+            val i = Intent(this, MainActivity3::class.java)
             startActivity(i)
         }
 
@@ -189,17 +199,16 @@ class HomeActivity : AppCompatActivity() {
                     var text_hu = findViewById<TextView>(R.id.tv_hu)
                     var text_win = findViewById<TextView>(R.id.tv_win)
 
-                    text_wt.text = "현재 날씨 " + description
-                    text_nowtemp.text = "현재 기온 " + nowTemp + "ºC"
-                    text_hightemp.text = "최고 기온 " + maxTemp + "ºC"
-                    text_lowtemp.text = "최저 기온 " + minTemp + "ºC"
-                    text_hu.text = "습도 " + humidity + "%"
-                    text_win.text = "풍속 " + speed + "m/s"
+                    text_wt.text =  description
+                    text_nowtemp.text =  nowTemp + "ºC"
+                    text_hightemp.text =  maxTemp + "ºC"
+                    text_lowtemp.text =   minTemp + "ºC"
+                    text_hu.text =   humidity + "%"
+                    text_win.text =  speed + "m/s"
 
 
 
-                    var text_all_weather = findViewById<TextView>(R.id.tv_weather)
-                    text_all_weather.text = msg
+
                 }
 
             }
@@ -251,5 +260,17 @@ class HomeActivity : AppCompatActivity() {
         val startOffset = fileDescriptor.getStartOffset()
         val declaredLength = fileDescriptor.getDeclaredLength()
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val j = intent ?: return // 호출에 사용된 Intent
+        val sNAME = j.getStringExtra(ProfileActivity.NAME)
+
+        Log.d("들어오나요", "${sNAME}")
+
+        tv_who.text = "누구? ${sNAME}"
+        j.putExtra(ProfileActivity.RESULT, tv_who.text.toString())
+        setResult(ProfileActivity.REQUEST, j)
     }
 }

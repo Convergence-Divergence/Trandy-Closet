@@ -69,9 +69,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+    implementation 'androidx.wear:wear:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    compileOnly 'com.google.android.wearable:wearable:2.6.0'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
     implementation 'com.github.kizitonwose:CalendarView:1.0.0'
 
@@ -117,5 +119,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     implementation 'com.amplifyframework:aws-storage-s3:1.6.4'
     implementation 'com.amplifyframework:aws-auth-cognito:1.6.4'
+
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
 
 }

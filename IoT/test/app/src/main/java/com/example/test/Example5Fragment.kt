@@ -154,19 +154,52 @@ class Example5Fragment : BaseFragment(R.layout.example_5_fragment), HasToolbar {
 
                     val flights = flights[day.date]
                     if (flights != null) {
-                        if (flights.count() == 1) {
+
+                        if(flights.count() == 1){
                             flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
-                        } else {
+                            Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+                        }
+
+                        if(flights.count() == 2){
                             flightTopView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
                             flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[1].color))
-                            if (flights[0]?.imageurl != null) {
-//                                Log.d("접근", "${flights[0]?.imageurl}")
-//                                Log.d("접근", "${flightImage1}")
-//                                Log.d("접근", "${view?.context}")
-                                Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
-                                Glide.with(view?.context).load(flights[1]?.imageurl).into(Image2)
-                            }
+                            Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+                            Glide.with(view?.context).load(flights[1]?.imageurl).into(Image2)
                         }
+
+                        if(flights.count() == 3){
+                            flightTopView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
+                            flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[1].color))
+                            Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+                            Glide.with(view?.context).load(flights[1]?.imageurl).into(Image2)
+                            Glide.with(view?.context).load(flights[2]?.imageurl).into(Image3)
+                        }
+
+                        if(flights.count() == 4){
+                            flightTopView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
+                            flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[1].color))
+                            Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+                            Glide.with(view?.context).load(flights[1]?.imageurl).into(Image2)
+                            Glide.with(view?.context).load(flights[2]?.imageurl).into(Image3)
+                            Glide.with(view?.context).load(flights[3]?.imageurl).into(Image4)
+                        }
+
+//                        if (flights.count() == 1) {
+//                            flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
+//                            if (flights[0]?.imageurl != null) {
+//                                Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+//                            }
+//                        } else {
+//                            flightTopView.setBackgroundColor(view.context.getColorCompat(flights[0].color))
+//                            flightBottomView.setBackgroundColor(view.context.getColorCompat(flights[1].color))
+//                            if (flights[1]?.imageurl != null) {
+//                                if (flights[1]?.imageurl != null) {
+//                                    Glide.with(view?.context).load(flights[0]?.imageurl).into(Image1)
+//                                    Glide.with(view?.context).load(flights[1]?.imageurl).into(Image2)
+//                                }
+//
+//                            }
+//                        }
                     }
                 } else {
                     textView.setTextColorRes(R.color.example_5_text_grey_light)

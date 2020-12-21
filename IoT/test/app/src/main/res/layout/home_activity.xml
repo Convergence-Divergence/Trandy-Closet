@@ -7,7 +7,7 @@
         android:id="@+id/homeRootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
+        android:background="@color/white"
         tools:context=".HomeActivity">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -44,26 +44,52 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="100dp"
+                        android:fontFamily="@font/bm_ttf"
                         android:text="내 옷 추가" />
 
                     <Button
                         android:id="@+id/bt_pop"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:fontFamily="@font/bm_ttf"
                         android:text="유행도 평가" />
 
                     <Button
                         android:id="@+id/bt_recom"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:fontFamily="@font/bm_ttf"
                         android:text="코디 추천" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/examplesRv"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center_vertical"
-                        android:background="#DD8686" />
+                    <Button
+                        android:id="@+id/bt_test"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:fontFamily="@font/bm_ttf"
+                        android:text="Test" />
+
+                    <TextView
+                        android:id="@+id/tv_who"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="누구"
+                        android:textColor="@android:color/black" />
+
+                    <TextClock
+                        android:layout_width="400dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bm_ttf"
+                        android:format12Hour="HH시 mm분 ss초"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@android:color/black" />
+
+                    <TextClock
+                        android:layout_width="400dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bm_ttf"
+                        android:format12Hour="yyyy년 MM월 dd일"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
 
@@ -83,71 +109,142 @@
                             android:layout_width="200dp"
                             android:layout_height="200dp"
                             android:layout_weight="1"
-                            android:background="@color/black"
+                            android:background="@color/white"
                             tools:srcCompat="@tools:sample/avatars" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/tv_wt"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+
+                                <TextView
+                                    android:id="@+id/tv_wt2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="현재 날씨"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/tv_nowtemp2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="현재 온도"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/tv_hightemp2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="최고 기온"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/tv_lowtemp2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="최저 기온"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/tv_hu2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="습도"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
+
+                                <TextView
+                                    android:id="@+id/tv_win2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="풍속"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"></LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="현재 날씨"
-                                android:textColor="@color/white" />
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/tv_nowtemp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="현재 온도"
-                                android:textColor="@color/white" />
+                                <TextView
+                                    android:id="@+id/tv_wt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="현재 날씨"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
 
-                            <TextView
-                                android:id="@+id/tv_hightemp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="최고 기온"
-                                android:textColor="@color/white" />
+                                <TextView
+                                    android:id="@+id/tv_nowtemp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="현재 온도"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
 
-                            <TextView
-                                android:id="@+id/tv_lowtemp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="최저 기온"
-                                android:textColor="@color/white" />
+                                <TextView
+                                    android:id="@+id/tv_lowtemp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="최저 기온"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
 
-                            <TextView
-                                android:id="@+id/tv_hu"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="습도"
-                                android:textColor="@color/white" />
+                                <TextView
+                                    android:id="@+id/tv_hightemp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="최고 기온"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
 
-                            <TextView
-                                android:id="@+id/tv_win"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="풍속"
-                                android:textColor="@color/white" />
+                                <TextView
+                                    android:id="@+id/tv_hu"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="습도"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
 
-                            <TextView
-                                android:id="@+id/tv_weather"
-                                android:layout_width="220dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:text="날씨 정보 올 곳"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="@color/white" />
+                                <TextView
+                                    android:id="@+id/tv_win"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="풍속"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                                    android:textColor="@android:color/black" />
+                            </LinearLayout>
                         </LinearLayout>
+
                     </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/examplesRv"
+                        android:layout_width="match_parent"
+                        android:layout_height="1133dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/white" />
 
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
         </FrameLayout>

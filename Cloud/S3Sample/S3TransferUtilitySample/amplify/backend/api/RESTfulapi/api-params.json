@@ -10,14 +10,7 @@
         },
         {
             "name": "/Users",
-            "lambdaFunction": "Users",
-            "privacy": {
-                "open": true
-            }
-        },
-        {
-            "name": "/Cloths",
-            "lambdaFunction": "Cloths",
+            "lambdaFunction": "postmetadata",
             "privacy": {
                 "open": true
             }
@@ -30,10 +23,7 @@
             "lambdaFunction": "lambdarestfulapi"
         },
         {
-            "lambdaFunction": "Users"
-        },
-        {
-            "lambdaFunction": "Cloths"
+            "lambdaFunction": "postmetadata"
         }
     ],
     "privacy": {
@@ -53,20 +43,12 @@
         },
         {
             "category": "function",
-            "resourceName": "Users",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
-        {
-            "category": "function",
-            "resourceName": "Cloths",
+            "resourceName": "postmetadata",
             "attributes": [
                 "Name",
                 "Arn"
             ]
         }
     ],
-    "uuid": "a6783f6c"
+    "uuid": "5bf51258"
 }

@@ -8,6 +8,21 @@ See the License for the specific language governing permissions and limitations 
 
 
 
+const AWS = require('aws-sdk');
+var mysql = require('mysql');
+
+//AWS.config.update({ region: process.env.TABLE_REGION });
+
+//const mysql = new AWS.mysql.DocumentClient();
+
+const connection = mysql.createConnection({
+            host        : 'database-closet-instance-1.ckoes5kxoo1c.us-east-1.rds.amazonaws.com',
+            user        : 'admin',
+            password    : 'campus07@multi',
+            database    : 'Trandy-Closet',
+            port        : 3306
+            })
+
 
 var express = require('express')
 var bodyParser = require('body-parser')

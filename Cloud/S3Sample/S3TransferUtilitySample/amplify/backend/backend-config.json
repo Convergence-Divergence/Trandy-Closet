@@ -24,7 +24,7 @@
       "service": "Lambda",
       "dependsOn": []
     },
-    "Cloths": {
+    "postmetadata": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -62,15 +62,7 @@
         },
         {
           "category": "function",
-          "resourceName": "Users",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "Cloths",
+          "resourceName": "postmetadata",
           "attributes": [
             "Name",
             "Arn"

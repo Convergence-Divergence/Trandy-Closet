@@ -91,7 +91,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         bt_recom.setOnClickListener {
-            val i = Intent(this, MyclothActivity::class.java)
+//            val i = Intent(this, MyclothActivity::class.java)  // 전자액자
+            val i = Intent(this, RecomActivity::class.java)  // 진짜 추천
             startActivity(i)
         }
 

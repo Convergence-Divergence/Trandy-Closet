@@ -7,6 +7,10 @@ import retrofit2.http.GET;
 
 public interface GetDataService {
 
-    @GET("./test")
+    @GET("/env/test")
     Call<List<RetroPhoto>> getAllCloths();
+
+
 }
+
+

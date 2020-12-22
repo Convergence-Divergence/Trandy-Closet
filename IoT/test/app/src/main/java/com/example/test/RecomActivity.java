@@ -54,7 +54,7 @@ public class RecomActivity extends AppCompatActivity {
 
         int j = 0;
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("outer")){
+            if(String.valueOf(i.getcategory()).equals("top")){
                 newPhotoList[0][j] = String.valueOf(i.getUrl());
                 j = j+1;
             }
@@ -62,7 +62,7 @@ public class RecomActivity extends AppCompatActivity {
 
         j=0;
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("top")){
+            if(String.valueOf(i.getcategory()).equals("bottom")){
                 newPhotoList[1][j] = String.valueOf(i.getUrl());
                 j = j+1;
             }

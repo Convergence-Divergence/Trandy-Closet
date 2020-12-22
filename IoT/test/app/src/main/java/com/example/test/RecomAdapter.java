@@ -65,6 +65,6 @@ public class RecomAdapter extends RecyclerView.Adapter<RecomAdapter.RecomViewHol
 
     @Override
     public int getItemCount() {
-        return dataList == null ? 0 : dataList.length;
+        return 5;
     }
 }

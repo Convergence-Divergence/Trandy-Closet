@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_recom_top"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_marginTop="50dp"
+            android:baselineAlignBottom="false"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/iv_recom_bottom"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_below="@+id/iv_recom_top"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_marginTop="50dp"
+            android:baselineAlignBottom="false"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/iv_recom_shoes"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_below="@+id/iv_recom_bottom"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="50dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

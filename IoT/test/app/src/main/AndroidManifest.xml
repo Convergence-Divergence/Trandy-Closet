@@ -4,8 +4,6 @@
     package="com.example.test">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -27,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ImageClassification"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".RecomActivity"></activity>
         <activity android:name=".MainActivity3" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity2" />

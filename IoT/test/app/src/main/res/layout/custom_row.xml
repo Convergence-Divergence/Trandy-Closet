@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
@@ -24,8 +24,50 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/coverImage"
+            android:text="Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/coverImage"
+            android:text="Category" />
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_category"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/coverImage"
+            android:text="detail" />
+
+        <TextView
+            android:id="@+id/tv_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_detail"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/coverImage"
+            android:text="Color" />
+
+        <TextView
+            android:id="@+id/tv_season"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_color"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/coverImage"
+            android:text="Season" />
 
 
     </RelativeLayout>

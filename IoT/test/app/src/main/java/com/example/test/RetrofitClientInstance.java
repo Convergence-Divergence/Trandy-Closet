@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://w0lhdro9m0.execute-api.us-east-1.amazonaws.com/env/";
+    private static final String BASE_URL = "https://w0lhdro9m0.execute-api.us-east-1.amazonaws.com/";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

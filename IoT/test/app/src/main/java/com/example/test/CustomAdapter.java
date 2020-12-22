@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -30,6 +31,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         public final View mView;
 
         TextView txtTitle;
+        TextView txtCategory;
+        TextView txtDetail;
+        TextView txtColor;
+        TextView txtSeason;
+
         private ImageView coverImage;
 
         CustomViewHolder(View itemView) {
@@ -38,6 +44,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
             txtTitle = mView.findViewById(R.id.title);
             coverImage = mView.findViewById(R.id.coverImage);
+
+            txtCategory = mView.findViewById(R.id.tv_category);
+            txtDetail = mView.findViewById(R.id.tv_detail);
+            txtColor = mView.findViewById(R.id.tv_color);
+            txtSeason = mView.findViewById(R.id.tv_season);
         }
     }
 
@@ -51,13 +62,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         holder.txtTitle.setText(dataList.get(position).getname());
+        holder.txtCategory.setText(dataList.get(position).getcategory());
+        holder.txtDetail.setText(dataList.get(position).getdetail());
+        holder.txtColor.setText(dataList.get(position).getcolor());
+        holder.txtSeason.setText(dataList.get(position).getseason());
 
-        Picasso.Builder builder = new Picasso.Builder(context);
-        builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(dataList.get(position).getUrl())
-                .placeholder((R.drawable.ic_launcher_background))
-                .error(R.drawable.ic_launcher_background)
-                .into(holder.coverImage);
+        Glide.with(context).load(dataList.get(position).getUrl()).into(holder.coverImage);
+//        Picasso.Builder builder = new Picasso.Builder(context);
+//        builder.downloader(new OkHttp3Downloader(context));
+//        builder.build().load(dataList.get(position).getUrl())
+//                .placeholder((R.drawable.ic_launcher_background))
+//                .error(R.drawable.ic_launcher_background)
+//                .into(holder.coverImage);
 
     }
 

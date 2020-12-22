@@ -3,6 +3,7 @@ package com.example.test;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,9 @@ public class MainActivity3 extends AppCompatActivity {
             public void onResponse(Call<List<RetroPhoto>> call, Response<List<RetroPhoto>> response) {
                 progressDoalog.dismiss();
                 generateDataList(response.body());
+                generateDataList2(response.body());
+                generateDataList3(response.body());
+                generateDataList4(response.body());
                 Log.d("뜨나", String.valueOf(response));
             }
 
@@ -54,9 +58,65 @@ public class MainActivity3 extends AppCompatActivity {
 
     /*Method to generate List of data using RecyclerView with custom adapter*/
     private void generateDataList(List<RetroPhoto> photoList) {
+        List<RetroPhoto> newPhotoList = new ArrayList();
+
+        for (RetroPhoto i :photoList) {
+            if(String.valueOf(i.getcategory()).equals("outer")){
+                newPhotoList.add(i);
+            }
+        }
+
         recyclerView = findViewById(R.id.customRecyclerView);
-        adapter = new CustomAdapter(MainActivity3.this,photoList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity3.this);
+        adapter = new CustomAdapter(MainActivity3.this, newPhotoList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity3.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void generateDataList2(List<RetroPhoto> photoList) {
+        List<RetroPhoto> newPhotoList = new ArrayList();
+
+        for (RetroPhoto i :photoList) {
+            if(String.valueOf(i.getcategory()).equals("top")){
+                newPhotoList.add(i);
+            }
+        }
+
+        recyclerView = findViewById(R.id.custom2RecyclerView);
+        adapter = new CustomAdapter(MainActivity3.this, newPhotoList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity3.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void generateDataList3(List<RetroPhoto> photoList) {
+        List<RetroPhoto> newPhotoList = new ArrayList();
+
+        for (RetroPhoto i :photoList) {
+            if(String.valueOf(i.getcategory()).equals("bottom")){
+                newPhotoList.add(i);
+            }
+        }
+
+        recyclerView = findViewById(R.id.custom3RecyclerView);
+        adapter = new CustomAdapter(MainActivity3.this, newPhotoList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity3.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void generateDataList4(List<RetroPhoto> photoList) {
+        List<RetroPhoto> newPhotoList = new ArrayList();
+
+        for (RetroPhoto i :photoList) {
+            if(String.valueOf(i.getcategory()).equals("shoes")){
+                newPhotoList.add(i);
+            }
+        }
+
+        recyclerView = findViewById(R.id.custom4RecyclerView);
+        adapter = new CustomAdapter(MainActivity3.this, newPhotoList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity3.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }

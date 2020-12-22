@@ -5,32 +5,35 @@ import com.google.gson.annotations.SerializedName;
 public class RetroPhoto {
 
     @SerializedName("name")
-    private char name;
+    private String name;
 //    @SerializedName("image_number")
 //    private Integer image_number;
     @SerializedName("category")
-    private char category;
+    private String category;
     @SerializedName("detail")
-    private char detail;
+    private String detail;
+    @SerializedName("color")
+    private String color;
     @SerializedName("season")
-    private char season;
+    private String season;
     @SerializedName("Url")
-    private char Url;
+    private String Url;
 
-    public RetroPhoto(char name, char category, char detail, char season, char Url) {
+    public RetroPhoto(String name, String category, String color, String detail, String season, String Url) {
         this.name = name;
 //        this.image_number = image_number;
         this.category = category;
+        this.color = color;
         this.detail = detail;
         this.season = season;
         this.Url = Url;
     }
 
-    public char getname() {
+    public String getname() {
         return name;
     }
 
-    public void setname(char name) {
+    public void setname(String name) {
         this.name = name;
     }
 
@@ -42,35 +45,41 @@ public class RetroPhoto {
 //        this.image_number = image_number;
 //    }
 
-    public char getcategory() {
+    public String getcategory() {
         return category;
     }
 
-    public void setcategory(char category) {
+    public void setcategory(String category) {
         this.category = category;
     }
 
-    public char getdetail() {
+    public String getcolor() {
+        return color;
+    }
+
+    public void setcolor(String color) { this.color = color; }
+
+    public String getdetail() {
         return detail;
     }
 
-    public void setdetail(char detail) {
+    public void setdetail(String detail) {
         this.detail = detail;
     }
 
-    public char getseason() {
+    public String getseason() {
         return season;
     }
 
-    public void setseason(char season) {
+    public void setseason(String season) {
         this.season = season;
     }
 
-    public char getUrl() {
+    public String getUrl() {
         return Url;
     }
 
-    public void setUrl(char Url) {
+    public void setUrl(String Url) {
         this.Url = Url;
     }
 }

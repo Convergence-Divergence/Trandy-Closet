@@ -195,17 +195,17 @@ class HomeActivity : AppCompatActivity() {
 
                     var text_wt = findViewById<TextView>(R.id.tv_wt)
                     var text_nowtemp = findViewById<TextView>(R.id.tv_nowtemp)
-                    var text_hightemp = findViewById<TextView>(R.id.tv_hightemp)
-                    var text_lowtemp = findViewById<TextView>(R.id.tv_lowtemp)
+//                    var text_hightemp = findViewById<TextView>(R.id.tv_hightemp)
+//                    var text_lowtemp = findViewById<TextView>(R.id.tv_lowtemp)
                     var text_hu = findViewById<TextView>(R.id.tv_hu)
-                    var text_win = findViewById<TextView>(R.id.tv_win)
+//                    var text_win = findViewById<TextView>(R.id.tv_win)
 
                     text_wt.text =  description
                     text_nowtemp.text =  nowTemp + "ºC"
-                    text_hightemp.text =  maxTemp + "ºC"
-                    text_lowtemp.text =   minTemp + "ºC"
+//                    text_hightemp.text =  maxTemp + "ºC"
+//                    text_lowtemp.text =   minTemp + "ºC"
                     text_hu.text =   humidity + "%"
-                    text_win.text =  speed + "m/s"
+//                    text_win.text =  speed + "m/s"
 
 
 

@@ -47,10 +47,10 @@
 
         <ImageView
             android:id="@+id/iv_recom_shoes"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_below="@+id/iv_recom_bottom"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="50dp"
             tools:srcCompat="@tools:sample/avatars" />
 

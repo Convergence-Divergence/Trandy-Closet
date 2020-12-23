@@ -70,6 +70,30 @@
             android:layout_height="200dp"
 
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_today"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bm_ttf"
+                android:textSize="20sp"
+                android:text="오늘 입고 갈게요!" />
+
+            <Button
+                android:id="@+id/bt_back"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:fontFamily="@font/bm_ttf"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="뒤로가기" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

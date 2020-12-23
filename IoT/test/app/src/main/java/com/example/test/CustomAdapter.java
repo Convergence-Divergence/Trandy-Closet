@@ -1,6 +1,7 @@
 package com.example.test;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     private List<RetroPhoto> dataList = new ArrayList();
     private Context context;
+
+
+    int mPreviousIndex = -1;
 
     public CustomAdapter(Context context,List<RetroPhoto> dataList){
         this.context = context;
@@ -49,6 +53,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             txtDetail = mView.findViewById(R.id.tv_detail);
             txtColor = mView.findViewById(R.id.tv_color);
             txtSeason = mView.findViewById(R.id.tv_season);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.setBackgroundColor(Color.GRAY);
+                }
+            });
+
         }
     }
 
@@ -74,6 +86,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 //                .placeholder((R.drawable.ic_launcher_background))
 //                .error(R.drawable.ic_launcher_background)
 //                .into(holder.coverImage);
+
+
 
     }
 

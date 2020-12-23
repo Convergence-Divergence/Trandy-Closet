@@ -35,6 +35,18 @@
             tools:context="com.example.test.CameraActivity" >
 
 
+            <Button
+                android:id="@+id/bt_back1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="right"
+                android:fontFamily="@font/bm_ttf"
+                android:layout_marginTop="850dp"
+                android:textSize="20sp"
+                android:text="뒤로가기"
+                />
+
+
         </FrameLayout>
 
 
@@ -72,24 +84,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:visibility="gone">
 
                 <TextView
                     android:id="@+id/detected2_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="색1"
+                    android:text=""
                     android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/detected2_item_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="색 퍼센트1"
+                    android:text=""
                     android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:visibility="gone" />
 
             </LinearLayout>
 
@@ -97,24 +112,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:visibility="gone">
 
                 <TextView
                     android:id="@+id/detected2_item1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="색2"
+                    android:text=""
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/detected2_item1_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="색 퍼센트2"
+                    android:text=""
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    tools:visibility="gone" />
 
             </LinearLayout>
 
@@ -122,24 +140,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:visibility="gone">
 
                 <TextView
                     android:id="@+id/detected2_item2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="색3"
+                    android:text=""
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/detected2_item2_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="색 퍼센트3"
+                    android:text=""
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    tools:visibility="gone" />
 
             </LinearLayout>
 
@@ -148,16 +169,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:shadowColor="@color/pink_700"
-                android:text="보이시나요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                 android:textColor="@color/white"
-                android:textColorHighlight="#3F51B5" />
+                android:textColorHighlight="#3F51B5"
+                tools:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_ok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="확인" />
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="700dp"
+                android:fontFamily="@font/bm_ttf"
+                android:foregroundGravity="center_vertical|center"
+                android:text="사진 저장"
+                android:textSize="20sp"
+                tools:visibility="invisible" />
+
+
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,41 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_recom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/bt_star"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="left"
+                android:fontFamily="@font/bm_ttf"
+                android:layout_marginStart="20dp"
+                android:text="별점 기록"
+                android:textSize="20sp"/>
+
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <Button
+                android:id="@+id/bt_back2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="right"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="1000dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/bm_ttf"
+                android:text="뒤로가기"
+                android:textSize="20sp" />
+
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

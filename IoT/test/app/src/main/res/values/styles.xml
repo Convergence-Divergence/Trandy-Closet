@@ -9,6 +9,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textViewStyle">@style/TextViewStyle</item>
+        <item name="android:windowFullscreen">true</item>
 <!--        <item name="android:buttonStyle">@style/ButtonStyle</item>-->
 <!--        <item name="android:editTextStyle">@style/EditTextStyle</item>-->
 <!--        <item name="android:radioButtonStyle">@style/RadioButtonStyle</item>-->

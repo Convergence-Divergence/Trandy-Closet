@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +34,7 @@ public class RecomAdapter extends RecyclerView.Adapter<RecomAdapter.RecomViewHol
         private ImageView iv_recom_bottom;
         private ImageView iv_recom_shoes;
 
+
         RecomViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
@@ -57,14 +59,14 @@ public class RecomAdapter extends RecyclerView.Adapter<RecomAdapter.RecomViewHol
         Log.d("아이고", String.valueOf(dataList[0][0]));
         Log.d("아이고", String.valueOf(dataList[1][0]));
         Log.d("아이고", String.valueOf(dataList[2][0]));
-        Glide.with(context).load(dataList[0][position]).into(holder.iv_recom_top);
-        Glide.with(context).load(dataList[1][position]).into(holder.iv_recom_bottom);
-        Glide.with(context).load(dataList[2][position]).into(holder.iv_recom_shoes);
+        Glide.with(context).load(dataList[0][position+1]).into(holder.iv_recom_top);
+        Glide.with(context).load(dataList[1][position+1]).into(holder.iv_recom_bottom);
+        Glide.with(context).load(dataList[2][position+1]).into(holder.iv_recom_shoes);
 
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 4;
     }
 }

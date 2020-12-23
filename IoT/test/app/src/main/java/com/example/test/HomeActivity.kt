@@ -201,7 +201,7 @@ class HomeActivity : AppCompatActivity() {
 //                    var text_win = findViewById<TextView>(R.id.tv_win)
 
                     text_wt.text =  description
-                    text_nowtemp.text =  nowTemp + "ºC"
+                    text_nowtemp.text =  nowTemp
 //                    text_hightemp.text =  maxTemp + "ºC"
 //                    text_lowtemp.text =   minTemp + "ºC"
                     text_hu.text =   humidity + "%"
@@ -235,6 +235,8 @@ class HomeActivity : AppCompatActivity() {
             return "구름 많음"
         } else if (weather == "clear sky") {
             return "맑음"
+        } else if (weather == "light rain") {
+            return "약한 비"
         }
         return weather
     }
@@ -270,7 +272,8 @@ class HomeActivity : AppCompatActivity() {
 
         Log.d("들어오나요", "${sNAME}")
 
-        tv_who.text = "누구? ${sNAME}"
+        textView9.text = "${sNAME} 님 반갑습니다! GRWM 입니다!"
+        tv_who.text = ""
         j.putExtra(ProfileActivity.RESULT, tv_who.text.toString())
         setResult(ProfileActivity.REQUEST, j)
     }

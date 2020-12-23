@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,6 +32,26 @@ public class RecomActivity extends AppCompatActivity {
         progressDoalog = new ProgressDialog(RecomActivity.this);
         progressDoalog.setMessage("Loading....");
         progressDoalog.show();
+
+
+        Button btback2 = findViewById(R.id.bt_back2);
+        btback2.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        Button btstar = findViewById(R.id.bt_star);
+        btstar.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getApplicationContext(), "만족도 저장이 완료되었습니다.", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER,40,50);
+                toast.show();
+            }
+        });
+
 
         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
@@ -54,7 +77,7 @@ public class RecomActivity extends AppCompatActivity {
 
         int j = 0;
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("top")){
+            if(String.valueOf(i.getcategory()).equals("상의")){
                 newPhotoList[0][j] = String.valueOf(i.getUrl());
                 j = j+1;
             }
@@ -62,7 +85,7 @@ public class RecomActivity extends AppCompatActivity {
 
         j=0;
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("bottom")){
+            if(String.valueOf(i.getcategory()).equals("하의")){
                 newPhotoList[1][j] = String.valueOf(i.getUrl());
                 j = j+1;
             }
@@ -70,7 +93,7 @@ public class RecomActivity extends AppCompatActivity {
 
         j = 0;
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("shoes")){
+            if(String.valueOf(i.getcategory()).equals("신발")){
                 newPhotoList[2][j] = String.valueOf(i.getUrl());
                 j = j+1;
             }

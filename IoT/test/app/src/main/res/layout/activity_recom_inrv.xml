@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/iv_recom_top"
-            android:layout_width="350dp"
-            android:layout_height="350dp"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
             android:layout_alignWithParentIfMissing="false"
             android:layout_alignParentStart="false"
             android:layout_alignParentLeft="false"
@@ -25,14 +25,14 @@
             android:layout_alignParentEnd="false"
             android:layout_alignParentRight="false"
             android:layout_alignParentBottom="false"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="0dp"
             android:baselineAlignBottom="false"
             tools:srcCompat="@tools:sample/avatars" />
 
         <ImageView
             android:id="@+id/iv_recom_bottom"
-            android:layout_width="350dp"
-            android:layout_height="350dp"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
             android:layout_alignWithParentIfMissing="false"
             android:layout_below="@+id/iv_recom_top"
             android:layout_alignParentStart="false"
@@ -47,13 +47,24 @@
 
         <ImageView
             android:id="@+id/iv_recom_shoes"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_below="@+id/iv_recom_bottom"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="50dp"
             tools:srcCompat="@tools:sample/avatars" />
 
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_recom_shoes"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="50dp"
+            />
+
     </RelativeLayout>
+
+
 
 </androidx.cardview.widget.CardView>

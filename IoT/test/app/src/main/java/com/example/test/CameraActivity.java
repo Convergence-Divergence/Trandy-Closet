@@ -43,6 +43,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -100,6 +101,9 @@ public abstract class CameraActivity extends AppCompatActivity
       recognition1ValueTextView,
       recognition2ValueTextView;
 
+//          tvrecognitionTextView,
+//          tvrecognitionValueTextView;
+
 
   protected TextView frameValueTextView,
       cropValueTextView,
@@ -127,6 +131,14 @@ public abstract class CameraActivity extends AppCompatActivity
     } else {
       requestPermission();
     }
+
+    Button btback = findViewById(R.id.bt_back1);
+    btback.setOnClickListener(new Button.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        onBackPressed();
+      }
+    });
 
     threadsTextView = findViewById(R.id.threads);
     plusImageView = findViewById(R.id.plus);
@@ -191,6 +203,9 @@ public abstract class CameraActivity extends AppCompatActivity
     recognition2TextView = findViewById(R.id.detected_item2);
     recognition2ValueTextView = findViewById(R.id.detected_item2_value);
 
+    // 12/23 추가
+//    tvrecognitionTextView = findViewById(R.id.tv_detected_item);
+//    tvrecognitionValueTextView = findViewById(R.id.tv_detected_item_value);
 
 
     frameValueTextView = findViewById(R.id.frame_info);
@@ -535,19 +550,26 @@ public abstract class CameraActivity extends AppCompatActivity
     if (results != null && results.size() >= 3) {
       Recognition recognition = results.get(0);
       if (recognition != null) {
-        if (recognition.getTitle() != null) recognitionTextView.setText(recognition.getTitle());
-        if (recognition.getConfidence() != null)
-          recognitionValueTextView.setText(
-              String.format("%.2f", (100 * recognition.getConfidence())) + "%");
-              Log.d("이거 값이 머지", String.valueOf(recognition.getTitle()));
+        if (recognition.getTitle() != null) {
+          recognitionTextView.setText(recognition.getTitle());
+//          tvrecognitionTextView.setText(recognition.getTitle());
+        }
+        if (recognition.getConfidence() != null) {
+          recognitionValueTextView.setText(String.format("%.2f", (100 * recognition.getConfidence())) + "%");
+//          tvrecognitionValueTextView.setText(String.format("%.2f", (100 * recognition.getConfidence())) + "%");
+        }
       }
+
+
 
       Recognition recognition1 = results.get(1);
       if (recognition1 != null) {
         if (recognition1.getTitle() != null) recognition1TextView.setText(recognition1.getTitle());
-        if (recognition1.getConfidence() != null)
+        if (recognition1.getConfidence() != null) {
           recognition1ValueTextView.setText(
-              String.format("%.2f", (100 * recognition1.getConfidence())) + "%");
+                  String.format("%.2f", (100 * recognition1.getConfidence())) + "%");
+
+        }
       }
 
       Recognition recognition2 = results.get(2);

@@ -74,6 +74,11 @@ fun generateFlights(): List<Flight> {
         list.add(Flight((empty), Airport("상의", "다른 정보"), Airport("하의", "다른 정보"), R.color.brown_700, "https://s3transferimages1209133644-dev.s3.amazonaws.com/public/2020.11."+i+"_0004.jpg"))
     }
 
+    list.add(Flight((currentMonth.atDay(23).atTime(7, 15)), Airport("상의", "다른 정보"), Airport("하의", "다른 정보"), R.color.pink_700, "https://s3transferimages1209133644-dev.s3.amazonaws.com/public/2020.11.17_0001.jpg"))
+    list.add(Flight((currentMonth.atDay(23).atTime(7, 15)), Airport("상의", "다른 정보"), Airport("하의", "다른 정보"), R.color.green_700, "https://s3transferimages1209133644-dev.s3.amazonaws.com/public/2020.11.13_0002.jpg"))
+    list.add(Flight((currentMonth.atDay(23).atTime(7, 15)), Airport("상의", "다른 정보"), Airport("하의", "다른 정보"), R.color.blue_800, "https://s3transferimages1209133644-dev.s3.amazonaws.com/public/2020.11.11_0003.jpg"))
+    list.add(Flight((currentMonth.atDay(23).atTime(7, 15)), Airport("상의", "다른 정보"), Airport("하의", "다른 정보"), R.color.brown_700, "https://s3transferimages1209133644-dev.s3.amazonaws.com/public/2020.11.11_0004.jpg"))
+
     Log.d("이건 어떻게 뜰까", "${list}")
     return list
 }

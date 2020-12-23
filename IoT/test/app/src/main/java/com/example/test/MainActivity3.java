@@ -2,7 +2,11 @@ package com.example.test;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.core.Amplify;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +35,26 @@ public class MainActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+        Button bttoday = findViewById(R.id.bt_today);
+        bttoday.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast toast = Toast.makeText(getApplicationContext(), "일정 저장이 완료되었습니다.", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER,40,50);
+                toast.show();
+
+            }
+        });
+
+        Button btback = findViewById(R.id.bt_back);
+        btback.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         progressDoalog = new ProgressDialog(MainActivity3.this);
         progressDoalog.setMessage("Loading....");
@@ -61,7 +88,7 @@ public class MainActivity3 extends AppCompatActivity {
         List<RetroPhoto> newPhotoList = new ArrayList();
 
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("outer")){
+            if(String.valueOf(i.getcategory()).equals("아우터")){
                 newPhotoList.add(i);
             }
         }
@@ -77,7 +104,7 @@ public class MainActivity3 extends AppCompatActivity {
         List<RetroPhoto> newPhotoList = new ArrayList();
 
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("top")){
+            if(String.valueOf(i.getcategory()).equals("상의")){
                 newPhotoList.add(i);
             }
         }
@@ -93,7 +120,7 @@ public class MainActivity3 extends AppCompatActivity {
         List<RetroPhoto> newPhotoList = new ArrayList();
 
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("bottom")){
+            if(String.valueOf(i.getcategory()).equals("하의")){
                 newPhotoList.add(i);
             }
         }
@@ -109,7 +136,7 @@ public class MainActivity3 extends AppCompatActivity {
         List<RetroPhoto> newPhotoList = new ArrayList();
 
         for (RetroPhoto i :photoList) {
-            if(String.valueOf(i.getcategory()).equals("shoes")){
+            if(String.valueOf(i.getcategory()).equals("신발")){
                 newPhotoList.add(i);
             }
         }

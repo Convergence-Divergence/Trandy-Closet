@@ -5,11 +5,11 @@ Hat
 Jacket
 Jumpsuit
 Pants
-Shirt / Blouse
+Shirt/Blouse
 Shoe
 Shorts
 Skirt
-Tights / Stockings
-Top / T-shirt / Sweatshirt
+Tights/Stockings
+Top/T-shirt/Sweatshirt
 
 

@@ -371,7 +371,7 @@ public abstract class Classifier2 {
 
     TextView text1 = (TextView) ((ClassifierActivity2) context2).findViewById(R.id.tv_ai_color);
 //    TextView text_one = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item);
-    text1.setText(String.valueOf(map.get(k) + " " + max*100 + "%"));
+    text1.setText("");
 //    text_one.setText(String.valueOf(map.get(k) + " " + max*100 + "%"));
 
 
@@ -394,16 +394,13 @@ public abstract class Classifier2 {
                 TextView recognition1ValueTextView = (TextView) ((ClassifierActivity2) context).findViewById(R.id.detected2_item1_value);
                 TextView recognition2TextView = (TextView) ((ClassifierActivity2) context).findViewById(R.id.detected2_item2);
                 TextView recognition2ValueTextView = (TextView) ((ClassifierActivity2) context).findViewById(R.id.detected2_item2_value);
-                recognitionTextView.setText(String.valueOf(map.get(finalK)));
-                recognition1TextView.setText(map.get(finalK1));
-                recognition2TextView.setText(map.get(finalK2));
+                recognitionTextView.setText("");
+                recognition1TextView.setText("");
+                recognition2TextView.setText("");
                 // 아래에 색부분도 동시에 나오게
-                recognitionValueTextView.setText(
-                        String.format("%.2f", (100 * finalMax)) + "%");
-                recognition1ValueTextView.setText(
-                        String.format("%.2f", (100 * finalMax1)) + "%");
-                recognition2ValueTextView.setText(
-                        String.format("%.2f", (100 * finalMax2)) + "%");
+                recognitionValueTextView.setText("");
+                recognition1ValueTextView.setText("");
+                recognition2ValueTextView.setText("");
 
 
 
@@ -437,31 +434,9 @@ public abstract class Classifier2 {
 
 
     Button okbtn = (Button) ((ClassifierActivity2) context).findViewById(R.id.btn_ok);
+    okbtn.setVisibility(View.INVISIBLE);
+//    okbtn.setVisibility(View.GONE);
 
-    okbtn.setOnClickListener(new Button.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        String ja = String.valueOf(System.currentTimeMillis());
-        saveBitmaptoJpeg(bitmap, "camtest", ja);
-
-
-        String ex_storage = Environment.getExternalStorageDirectory().getAbsolutePath();
-        // Get Absolute Path in External Sdcard
-        String foler_name = "/camtest/";
-        String file_name = ja+".jpg";
-        String string_path = ex_storage+foler_name;
-
-        File exampleFile = new File(string_path, file_name);
-
-
-        Amplify.Storage.uploadFile(
-                file_name,
-                exampleFile,
-                result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
-                storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
-        );
-      }
-    });
 
 
 

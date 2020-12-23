@@ -195,17 +195,17 @@ class HomeActivity : AppCompatActivity() {
 
                     var text_wt = findViewById<TextView>(R.id.tv_wt)
                     var text_nowtemp = findViewById<TextView>(R.id.tv_nowtemp)
-                    var text_hightemp = findViewById<TextView>(R.id.tv_hightemp)
-                    var text_lowtemp = findViewById<TextView>(R.id.tv_lowtemp)
+//                    var text_hightemp = findViewById<TextView>(R.id.tv_hightemp)
+//                    var text_lowtemp = findViewById<TextView>(R.id.tv_lowtemp)
                     var text_hu = findViewById<TextView>(R.id.tv_hu)
-                    var text_win = findViewById<TextView>(R.id.tv_win)
+//                    var text_win = findViewById<TextView>(R.id.tv_win)
 
                     text_wt.text =  description
-                    text_nowtemp.text =  nowTemp + "ºC"
-                    text_hightemp.text =  maxTemp + "ºC"
-                    text_lowtemp.text =   minTemp + "ºC"
+                    text_nowtemp.text =  nowTemp
+//                    text_hightemp.text =  maxTemp + "ºC"
+//                    text_lowtemp.text =   minTemp + "ºC"
                     text_hu.text =   humidity + "%"
-                    text_win.text =  speed + "m/s"
+//                    text_win.text =  speed + "m/s"
 
 
 
@@ -235,6 +235,8 @@ class HomeActivity : AppCompatActivity() {
             return "구름 많음"
         } else if (weather == "clear sky") {
             return "맑음"
+        } else if (weather == "light rain") {
+            return "약한 비"
         }
         return weather
     }
@@ -270,7 +272,8 @@ class HomeActivity : AppCompatActivity() {
 
         Log.d("들어오나요", "${sNAME}")
 
-        tv_who.text = "누구? ${sNAME}"
+        textView9.text = "${sNAME} 님 반갑습니다! GRWM 입니다!"
+        tv_who.text = ""
         j.putExtra(ProfileActivity.RESULT, tv_who.text.toString())
         setResult(ProfileActivity.REQUEST, j)
     }

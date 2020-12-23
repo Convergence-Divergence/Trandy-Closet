@@ -27,9 +27,11 @@ import android.os.Environment;
 import android.os.SystemClock;
 import android.os.Trace;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
@@ -378,7 +380,7 @@ public abstract class Classifier {
 
     TextView text1 = (TextView) ((ClassifierActivity) context2).findViewById(R.id.tv_ai_color);
 //    TextView text_one = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item);
-    text1.setText(String.valueOf(map.get(k) + " " + max*100 + "%"));
+    text1.setText(String.valueOf(""));
 //    text_one.setText(String.valueOf(map.get(k) + " " + max*100 + "%"));
 
 
@@ -401,19 +403,19 @@ public abstract class Classifier {
                 TextView recognition1ValueTextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item1_value);
                 TextView recognition2TextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item2);
                 TextView recognition2ValueTextView = (TextView) ((ClassifierActivity) context).findViewById(R.id.detected2_item2_value);
-                recognitionTextView.setText(String.valueOf(map.get(finalK)));
-                recognition1TextView.setText(map.get(finalK1));
-                recognition2TextView.setText(map.get(finalK2));
+                recognitionTextView.setText("");
+                recognition1TextView.setText("");
+                recognition2TextView.setText("");
                 // 아래에 색부분도 동시에 나오게
-                recognitionValueTextView.setText(
+                recognitionValueTextView.setText("");
+                recognition1ValueTextView.setText("");
+                recognition2ValueTextView.setText("");
+
+                TextView colorTextView = (TextView) ((CameraActivity) context).findViewById(R.id.color_item);
+                TextView colorValueTextView = (TextView) ((CameraActivity) context).findViewById(R.id.color_item_value);
+                colorTextView.setText(String.valueOf(map.get(finalK)));
+                colorValueTextView.setText(
                         String.format("%.2f", (100 * finalMax)) + "%");
-                recognition1ValueTextView.setText(
-                        String.format("%.2f", (100 * finalMax1)) + "%");
-                recognition2ValueTextView.setText(
-                        String.format("%.2f", (100 * finalMax2)) + "%");
-
-
-
           }
         });
       }
@@ -444,12 +446,16 @@ public abstract class Classifier {
 
 
     Button okbtn = (Button) ((ClassifierActivity) context).findViewById(R.id.btn_ok);
-
+    okbtn.setVisibility(View.VISIBLE);
     okbtn.setOnClickListener(new Button.OnClickListener() {
       @Override
       public void onClick(View view) {
         String ja = String.valueOf(System.currentTimeMillis());
         saveBitmaptoJpeg(bitmap, "camtest", ja);
+
+        Toast toast = Toast.makeText(context, "사진 저장이 완료되었습니다.", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER,40,50);
+        toast.show();
 
 
         String ex_storage = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -470,6 +476,9 @@ public abstract class Classifier {
 
       }
     });
+
+
+
 
 
 

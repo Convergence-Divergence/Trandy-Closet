@@ -21,25 +21,25 @@ class ProfileActivity : AppCompatActivity() {
 
         bt_mom.setOnClickListener {
             val i = Intent(this@ProfileActivity, HomeActivity::class.java)
-            i.putExtra(NAME, "MOM")
+            i.putExtra(NAME, "엄마")
             startActivityForResult(i, REQUEST)
         }
 
         bt_dad.setOnClickListener {
             val i = Intent(this@ProfileActivity, HomeActivity::class.java)
-            i.putExtra(NAME, "DAD")
+            i.putExtra(NAME, "아빠")
             startActivityForResult(i, REQUEST)
         }
 
         bt_son.setOnClickListener {
             val i = Intent(this@ProfileActivity, HomeActivity::class.java)
-            i.putExtra(NAME, "SON")
+            i.putExtra(NAME, "아들")
             startActivityForResult(i, REQUEST)
         }
 
         bt_daughter.setOnClickListener {
             val i = Intent(this@ProfileActivity, HomeActivity::class.java)
-            i.putExtra(NAME, "DAU")
+            i.putExtra(NAME, "딸")
             startActivityForResult(i, REQUEST)
         }
 

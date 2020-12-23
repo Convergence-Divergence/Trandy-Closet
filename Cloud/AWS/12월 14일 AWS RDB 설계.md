@@ -95,7 +95,17 @@
 
 
 
+- Amazon RDS MySQL 의 문제점
 
+![image-20201222194136608](12월 14일 AWS RDB 설계.assets/image-20201222194136608.png)
+
+
+
+- Amazon Aurora mysql 의 문제점
+
+![image-20201222195146137](12월 14일 AWS RDB 설계.assets/image-20201222195146137.png)
+
+![image-20201222195200591](12월 14일 AWS RDB 설계.assets/image-20201222195200591.png)
 
 
 

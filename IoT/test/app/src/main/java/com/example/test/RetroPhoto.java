@@ -6,8 +6,6 @@ public class RetroPhoto {
 
     @SerializedName("name")
     private String name;
-//    @SerializedName("image_number")
-//    private Integer image_number;
     @SerializedName("category")
     private String category;
     @SerializedName("detail")

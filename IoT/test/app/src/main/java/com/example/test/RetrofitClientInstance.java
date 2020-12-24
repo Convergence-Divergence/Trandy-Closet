@@ -13,7 +13,7 @@ public class RetrofitClientInstance {
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl("https://w0lhdro9m0.execute-api.us-east-1.amazonaws.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
